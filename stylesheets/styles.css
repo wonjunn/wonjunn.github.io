@@ -40,7 +40,8 @@ h1 {
 
 
 a {
-  color: #af5da8;
+  /* color: #af5da8; */
+  color: rgb(15, 15, 112);
   font-weight:400;
   text-decoration:none;
 }
