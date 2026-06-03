@@ -236,6 +236,11 @@ h3 {
   margin-top: 0;
 }
 
+.inline-venue {
+  color: #1d1d1f;
+  font-weight: 550;
+}
+
 p,
 ol,
 table,
@@ -293,6 +298,20 @@ par {
 
 b {
   padding-right: 0;
+}
+
+.author-me {
+  color: #1d1d1f;
+  font-weight: 650;
+}
+
+.venue-line {
+  color: #4a4a4f;
+}
+
+.venue-main {
+  color: #1d1d1f;
+  font-weight: 550;
 }
 
 code {
