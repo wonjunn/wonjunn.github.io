@@ -310,7 +310,7 @@ b {
 }
 
 .venue-main {
-  color: #1d1d1f;
+  color: inherit;
   font-weight: 550;
 }
 
