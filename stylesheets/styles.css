@@ -211,6 +211,19 @@ h2 {
   letter-spacing: -0.01em;
 }
 
+.footnote-mark {
+  margin-left: 1px;
+  color: #86868b;
+  font-size: 0.7em;
+}
+
+.footnote {
+  margin-top: 14px;
+  color: #1d1d1f;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
 h3 {
   margin: 44px 0 18px;
   color: #4a4a4f;
