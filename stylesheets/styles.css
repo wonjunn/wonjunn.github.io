@@ -169,6 +169,18 @@ footer {
 
 footer p {
   margin: 0;
+  font-size: 12px;
+}
+
+footer .footer-credit {
+  margin-top: 2px;
+  font-size: 11px;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #d2d2d7;
 }
 
 h1,
@@ -181,8 +193,8 @@ h3 {
 
 h1 {
   margin: 0 0 18px;
-  font-size: 34px;
-  line-height: 1.12;
+  font-size: 25px;
+  line-height: 1.2;
   font-weight: 650;
 }
 
@@ -413,6 +425,7 @@ i {
     margin-left: 0;
     padding: 0;
     width: auto;
+    text-align: center;
   }
 
   header a small {
@@ -432,10 +445,7 @@ i {
     word-wrap: break-word;
   }
 
-  h1 {
-    font-size: 30px;
-  }
-
+  h1,
   h2 {
     font-size: 23px;
   }
