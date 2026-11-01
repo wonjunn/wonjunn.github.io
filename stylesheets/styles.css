@@ -242,6 +242,15 @@ h2 {
   font-variant-numeric: tabular-nums;
 }
 
+.pub-link {
+  margin-right: 10px;
+  white-space: nowrap;
+}
+
+.pub-link .fa {
+  margin-right: 2px;
+}
+
 .authors {
   font-size: 14.5px;
 }
@@ -341,6 +350,7 @@ b {
 }
 
 .venue-line {
+  margin-right: 10px;
   color: #4a4a4f;
 }
 
