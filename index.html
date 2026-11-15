@@ -70,7 +70,7 @@
       --hover: #f8f8f6;
       --chip-hover: #eae9e5;
       --pad: 88px;
-      --ph: 253px;
+      --ph: 264px;
       color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
@@ -268,9 +268,28 @@
     }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+    /* touch screens: the small links and buttons get a larger tap area from an invisible layer around them; nothing moves.
+       each layer reaches at most halfway to the next link or button, so it never covers a neighbor */
+    @media (pointer: coarse) {
+      .plink, .links a, .filter button, #copy-email, .mnav a { position: relative; }
+      .plink::after, .links a::after, .filter button::after, #copy-email::after, #theme::after, .mnav a::after { content: ""; position: absolute; }
+      .plink::after { inset: -7px -5px -12px; }
+      .blogs .plink::after { inset: -2px -8px; }
+      .note .plink::after { inset: -7px -4px -12px; }
+      .links a::after { inset: -4px -3px -4px -8px; }
+      #copy-email::after { inset: -3px -8px -6px -3px; }
+      .filter button::after { inset: -8px -1px; }
+      .mnav a::after { inset: -4px 0; }
+      #theme::after { inset: -5px; }
+    }
+    /* the theme button is already positioned in one column; in two columns it needs to hold its own layer */
+    @media (pointer: coarse) and (min-width: 1024px) {
+      #theme { position: relative; }
+    }
+
     /* the fixed column must fit the window: on shorter desktop windows the spacing tightens first, then the portrait shrinks */
-    @media (min-width: 1024px) and (max-height: 900px) {
-      :root { --pad: 56px; --ph: clamp(76px, 100vh - 568px, 253px); }
+    @media (min-width: 1024px) and (max-height: 912px) {
+      :root { --pad: 56px; --ph: clamp(76px, 100vh - 568px, 264px); }
       .panel { padding-bottom: 36px; }
       .nav a { height: 26px; }
     }
@@ -283,7 +302,7 @@
     }
     /* one column */
     @media (max-width: 1023px) {
-      :root { --pad: 24px; --ph: 224px; }
+      :root { --pad: 24px; --ph: 234px; }
       .page { display: block; max-width: 728px; padding: 0 24px; }
       /* in one column the profile block is centered, as on the live site; the sections below stay left-aligned */
       .panel { position: relative; height: auto; display: block; padding: 56px 0 0; text-align: center; }
@@ -324,7 +343,7 @@
       .foot { margin-top: 64px; }
     }
     @media (max-width: 560px) {
-      :root { --ph: 210px; }
+      :root { --ph: 219px; }
       .page { padding: 0 20px; }
       .mnav-in { padding-left: 12px; }
       .panel { padding-top: 44px; }
