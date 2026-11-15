@@ -21,6 +21,30 @@
   <meta name="twitter:title" content="Wonjun Kang">
   <meta name="twitter:description" content="Member of Technical Staff and AI Research Lead at FuriosaAI. Ph.D. in Electrical and Computer Engineering from Seoul National University.">
   <meta name="twitter:image" content="https://wonjunn.github.io/images/wj_crop2.jpeg">
+  <!-- who this page is about, in the form search engines read (schema.org). nothing here is shown on the page;
+       every value repeats the profile block and the summary above, so change them together -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "url": "https://wonjunn.github.io/",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Wonjun Kang",
+      "alternateName": "강원준",
+      "url": "https://wonjunn.github.io/",
+      "image": "https://wonjunn.github.io/images/wj_crop2.jpeg",
+      "description": "Member of Technical Staff and AI Research Lead at FuriosaAI. Ph.D. in Electrical and Computer Engineering from Seoul National University.",
+      "jobTitle": ["Member of Technical Staff", "AI Research Lead"],
+      "worksFor": { "@type": "Organization", "name": "FuriosaAI", "url": "https://furiosa.ai/" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Seoul National University", "url": "https://www.snu.ac.kr/" },
+      "sameAs": [
+        "https://scholar.google.com/citations?hl=en&user=Q-ARWkwAAAAJ",
+        "https://www.linkedin.com/in/wonjun-kang-43b181342/"
+      ]
+    }
+  }
+  </script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script>
     (function () {
@@ -121,7 +145,7 @@
     /* the whole 3:4 photo, same framing as the live site; --ph is its height */
     .avatar { width: calc(var(--ph) * .75); height: var(--ph); border-radius: 20px; overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--line); flex: none; }
     .avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    h1 { margin: 24px 0 0; font-size: 28px; line-height: 1.12; font-weight: 650; letter-spacing: -.03em; }
+    h1 { margin: 24px 0 0; font-size: 26px; line-height: 1.12; font-weight: 650; letter-spacing: -.03em; }
     h1 .ko { margin-left: 10px; font-size: 16.5px; font-weight: 450; letter-spacing: 0; color: var(--text-3); }
     .role { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--text-2); }
     .role a { color: var(--text); }
@@ -266,7 +290,7 @@
       /* centered, three short lines look like a narrow stack, so the first two share a line */
       .role-dot { display: inline; }
       .role-br { display: none; }
-      h1 { margin-top: 20px; font-size: 27px; }
+      h1 { margin-top: 20px; }
       .nav { display: none; }
       /* the section bar slides in once the profile block has scrolled away */
       .mnav {
@@ -304,7 +328,7 @@
       .mnav-in { padding-left: 12px; }
       .panel { padding-top: 44px; }
       #theme { top: 12px; }
-      h1 { font-size: 26px; }
+      h1 { font-size: 25px; }
       .about { font-size: 15.5px; }
       .news li { grid-template-columns: minmax(0, 1fr); }
       .news time { font-size: 12.5px; line-height: 1.6; }
@@ -323,6 +347,8 @@
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
   </style>
+  <!-- without scripts the paper list still shows in full; the filter cannot work then, so it is left out -->
+  <noscript><style>.filter { display: none; }</style></noscript>
 </head>
 <body>
   <svg width="0" height="0" style="position: absolute" aria-hidden="true">
@@ -418,7 +444,165 @@
           <a class="ext" href="https://furiosa.ai/blog/furiosaai-presents-papers-at-eccv-colm-conference-to-improve-ai-image-generation">Blog: ECCV &amp; COLM 2024<svg class="icon"><use href="#i-arrow"/></svg></a>
         </p>
         <p class="legend">* equal contribution, &dagger; equal advising</p>
-        <div id="list"></div>
+        <div id="list">
+          <!-- BEGIN paper list. Written by _pubs/build.py from _pubs/pubs.json and _pubs/authors.json: change those files and run the script; edits made here are overwritten. -->
+          <section class="grp" aria-label="Preprints">
+            <h3 class="grp-h">Preprints<span class="gc">3</span></h3>
+            <ul class="pubs">
+              <li class="pub" data-role="last">
+                <a class="p-title" href="https://arxiv.org/abs/2610.27889">Elicitation or Expansion? Demystifying Gains from Agent Harness Optimization</a>
+                <p class="p-authors"><a href="https://scholar.google.com/citations?hl=en&amp;user=Bk6pxR0AAAAJ">Younghyun Kim</a>*, <a href="https://just1nseo.github.io/">Wooseok Seo</a>*, <a href="https://minseokim.org/">Minseo Kim</a>, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://scholar.google.com/citations?hl=en&amp;user=FKPOG1EAAAAJ">Donghoon Kim</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://sites.google.com/view/jaehyungkim">Jaehyung Kim</a>&dagger;, <b>Wonjun Kang</b>&dagger;</p>
+                <p class="item-m"><span class="venue">Under Review</span><a class="plink" href="https://furiosa-air.github.io/elicitation-or-expansion"><svg class="icon"><use href="#i-globe"/></svg>Project Page</a><a class="plink" href="https://github.com/furiosa-ai/elicitation-or-expansion"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="last">
+                <a class="p-title" href="https://arxiv.org/abs/2610.23134">MetaCurate: Evolving Curation Filters for High-Quality Agentic Coding Data</a>
+                <p class="p-authors"><a href="https://scholar.google.com/citations?hl=en&amp;user=FKPOG1EAAAAJ">Donghoon Kim</a>*, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>*, <a href="https://kevingalim.com/">Kevin Galim</a>, <a href="https://minseokim.org/">Minseo Kim</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://scholar.google.com/citations?hl=en&amp;user=Bk6pxR0AAAAJ">Younghyun Kim</a>, <a href="https://just1nseo.github.io/">Wooseok Seo</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <b>Wonjun Kang</b></p>
+                <p class="item-m"><span class="venue">Under Review</span><a class="plink" href="https://furiosa-air.github.io/metacurate/"><svg class="icon"><use href="#i-globe"/></svg>Project Page</a><a class="plink" href="https://github.com/furiosa-ai/MetaCurate"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2610.19525">Diagnosing and Correcting Reward Hacking in Verifiable Instruction Following</a>
+                <p class="p-authors"><a href="https://ssangyeon.github.io/">Sangyeon Yoon</a>*, <a href="https://just1nseo.github.io/">Wooseok Seo</a>*, <a href="https://ivison.id.au/">Hamish Ivison</a>, Hyesoo Hong, <a href="https://scholar.google.com/citations?hl=en&amp;user=FKPOG1EAAAAJ">Donghoon Kim</a>, <b>Wonjun Kang</b>, <a href="https://ai-isl.yonsei.ac.kr/albert-no.html">Albert No</a>&dagger;, <a href="https://sites.google.com/view/jaehyungkim">Jaehyung Kim</a>&dagger;</p>
+                <p class="item-m"><span class="venue">Under Review</span><a class="plink" href="https://github.com/ssangyeon/CALIF"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+            </ul>
+          </section>
+          <section class="grp" aria-label="2026">
+            <h3 class="grp-h">2026<span class="gc">11</span></h3>
+            <ul class="pubs">
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2606.24143">AsyncOPD: How Stale Can On-Policy Distillation Be?</a>
+                <p class="p-authors"><b>Wonjun Kang</b>*, <a href="https://kevingalim.com/">Kevin Galim</a>*, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>, Minjun Kang, Sanghyun Park, <a href="https://scholar.google.com/citations?hl=en&amp;user=FKPOG1EAAAAJ">Donghoon Kim</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://minseokim.org/">Minseo Kim</a>, <a href="https://rishabhtiwari.org/">Rishabh Tiwari</a>, <a href="https://yzeng58.github.io/">Yuchen Zeng</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">NeurIPS 2026</span><a class="plink" href="https://github.com/furiosa-ai/async-opd"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="last">
+                <a class="p-title" href="https://arxiv.org/abs/2606.18967">EfficientRollout: System-Aware Self-Speculative Decoding for RL Rollouts</a>
+                <p class="p-authors"><a href="https://minseokim.org/">Minseo Kim</a>*, <a href="https://mjbooo.github.io/">Minjae Lee</a>*, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>, <a href="https://kevingalim.com/">Kevin Galim</a>, <a href="https://scholar.google.com/citations?hl=en&amp;user=FKPOG1EAAAAJ">Donghoon Kim</a>, <a href="https://colemanhooper.org/">Coleman Hooper</a>, <a href="https://harmandotpy.github.io/">Harman Singh</a>, <a href="https://amirgholami.org/">Amir Gholami</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <b>Wonjun Kang</b></p>
+                <p class="item-m"><span class="venue">NeurIPS 2026</span><a class="plink" href="https://github.com/furiosa-ai/EfficientRollout"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2610.37651">GEPA-Curator: Curated Learning for Self Improving Agents</a>
+                <p class="p-authors">Zack Yu*, Nicholas Lee*, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://lakshyaaagrawal.com/">Lakshya A Agrawal</a>, Luca Manolache, <b>Wonjun Kang</b>, <a href="https://people.eecs.berkeley.edu/~matei/">Matei Zaharia</a>, <a href="https://www.stat.berkeley.edu/~mmahoney/">Michael W. Mahoney</a>, <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/keutzer.html">Kurt Keutzer</a>, <a href="https://sehoonkim.org/">Sehoon Kim</a>&dagger;, <a href="https://amirgholami.org/">Amir Gholami</a>&dagger;</p>
+                <p class="item-m"><span class="venue">NeurIPS 2026 Workshop</span><span class="p-note">Pre-to-Post</span></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2609.39131">Characterizing High Bandwidth Flash for LLM Serving</a>
+                <p class="p-authors">Zack Yu, Chloe Wong, <a href="https://colemanhooper.org/">Coleman Hooper</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <b>Wonjun Kang</b>, Youngjin Cho, <a href="https://www.stat.berkeley.edu/~mmahoney/">Michael W. Mahoney</a>, <a href="https://people.eecs.berkeley.edu/~ysshao/">Yakun Sophia Shao</a>, <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/keutzer.html">Kurt Keutzer</a>, <a href="https://amirgholami.org/">Amir Gholami</a></p>
+                <p class="item-m"><span class="venue">MICRO 2026 Workshop</span><span class="p-note">RAISE-Arch</span></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://openreview.net/forum?id=b4EGkJZ5TP">Scaling Test-Time Compute for DLLMs via Parallel Search</a>
+                <p class="p-authors">Saarth Gaonkar*, <a href="https://sebzhao.github.io/">Sebastian Zhao</a>*, <a href="https://mjbooo.github.io/">Minjae Lee</a>*, <a href="https://colemanhooper.org/">Coleman Hooper</a>, <b>Wonjun Kang</b>, <a href="https://www.stat.berkeley.edu/~mmahoney/">Michael W. Mahoney</a>, <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/keutzer.html">Kurt Keutzer</a>, <a href="https://chenfengx.com/">Chenfeng Xu</a>, <a href="https://amirgholami.org/">Amir Gholami</a></p>
+                <p class="item-m"><span class="venue">COLM 2026 Workshop</span><span class="p-note">NonAR-LM</span></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2512.00831">ReJump: A Tree-Jump Representation for Analyzing and Improving LLM Reasoning</a>
+                <p class="p-authors"><a href="https://yzeng58.github.io/">Yuchen Zeng</a>*, <a href="https://zhangshuibai.github.io/">Shuibai Zhang</a>*, <b>Wonjun Kang</b>*, <a href="https://cychomatica.github.io/">Shutong Wu</a>, Lynnix Zou, <a href="https://yingfan-bot.github.io/">Ying Fan</a>, Heeju Kim, <a href="https://myhakureimu.github.io/">Ziqian Lin</a>, <a href="https://jungtaekkim.github.io/">Jungtaek Kim</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://papail.io/">Dimitris Papailiopoulos</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICML 2026</span><a class="plink" href="https://github.com/UW-Madison-Lee-Lab/ReJump"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2604.12056">LoSA: Locality Aware Sparse Attention for Block-Wise Diffusion Language Models</a>
+                <p class="p-authors"><a href="https://haochengxi.github.io/">Haocheng Xi</a>, <a href="https://harmandotpy.github.io/">Harman Singh</a>, <a href="https://yuezhouhu.github.io/">Yuezhou Hu</a>, <a href="https://colemanhooper.org/">Coleman Hooper</a>, <a href="https://rishabhtiwari.org/">Rishabh Tiwari</a>, <a href="https://www.adityatomar.org/">Aditya Tomar</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <b>Wonjun Kang</b>, <a href="https://www.stat.berkeley.edu/~mmahoney/">Michael Mahoney</a>, <a href="https://chenfengx.com/">Chenfeng Xu</a>, <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/keutzer.html">Kurt Keutzer</a>, <a href="https://amirgholami.org/">Amir Gholami</a></p>
+                <p class="item-m"><span class="venue">ICML 2026</span></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2510.04767">ParallelBench: Understanding the Trade-offs of Parallel Decoding in Diffusion LLMs</a>
+                <p class="p-authors"><b>Wonjun Kang</b>*, <a href="https://kevingalim.com/">Kevin Galim</a>*, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>*, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://yzeng58.github.io/">Yuchen Zeng</a>, <a href="https://zhangshuibai.github.io/">Shuibai Zhang</a>, <a href="https://colemanhooper.org/">Coleman Hooper</a>, <a href="https://yuezhouhu.github.io/">Yuezhou Hu</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICLR 2026</span><a class="plink" href="https://parallelbench.github.io"><svg class="icon"><use href="#i-globe"/></svg>Project Page</a><a class="plink" href="https://github.com/furiosa-ai/ParallelBench"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2506.08373">Draft-based Approximate Inference for LLMs</a>
+                <p class="p-authors"><a href="https://kevingalim.com/">Kevin Galim</a>*, <a href="https://sites.google.com/wisc.edu/ethan-ewer/about">Ethan Ewer</a>*, <b>Wonjun Kang</b>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICLR 2026</span><a class="plink" href="https://github.com/furiosa-ai/draft-based-approx-llm"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://openreview.net/forum?id=RdMiEf9B0D">CATS: Inference-aligned SFT for Diffusion LLMs via Context-sensitivity Aware Trajectory Sampling</a>
+                <p class="p-authors"><a href="https://seunghyukoh.com/">Seunghyuk Oh</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://kevingalim.com/">Kevin Galim</a>, <a href="https://minseokim.org/">Minseo Kim</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <b>Wonjun Kang</b>, <a href="https://hanbaeklyu.com/">Hanbaek Lyu</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICLR 2026 Workshop</span><span class="p-note">DeLTa</span></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2601.20357">TABED: Test-Time Adaptive Ensemble Drafting for Robust Speculative Decoding in LVLMs</a>
+                <p class="p-authors"><a href="https://mjbooo.github.io/">Minjae Lee</a>*, <b>Wonjun Kang</b>*, Byeongkeun Ahn, <a href="https://christian-egg.github.io/">Christian Classen</a>, <a href="https://kevingalim.com/">Kevin Galim</a>, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>, <a href="https://minghaoyan.netlify.app/">Minghao Yan</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">EACL 2026 Findings</span></p>
+              </li>
+            </ul>
+          </section>
+          <section class="grp" aria-label="2025">
+            <h3 class="grp-h">2025<span class="gc">9</span></h3>
+            <ul class="pubs">
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2503.03499">State-offset Tuning: State-based Parameter-Efficient Fine-Tuning for State Space Models</a>
+                <p class="p-authors"><b>Wonjun Kang</b>*, <a href="https://kevingalim.com/">Kevin Galim</a>*, <a href="https://yzeng58.github.io/">Yuchen Zeng</a>*, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a></p>
+                <p class="item-m"><span class="venue">ACL 2025 Main</span><a class="plink" href="https://github.com/furiosa-ai/ssm-state-tuning"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2502.06737">VersaPRM: Multi-Domain Process Reward Model via Synthetic Reasoning Data</a>
+                <p class="p-authors"><a href="https://thomaspzeng.com/">Thomas Zeng</a>, <a href="https://zhangshuibai.github.io/">Shuibai Zhang</a>, <a href="https://cychomatica.github.io/">Shutong Wu</a>, <a href="https://christian-egg.github.io/">Christian Classen</a>, <a href="https://daewon88.github.io/">Daewon Chae</a>, <a href="https://sites.google.com/wisc.edu/ethan-ewer/about">Ethan Ewer</a>, <a href="https://mjbooo.github.io/">Minjae Lee</a>, Heeju Kim, <b>Wonjun Kang</b>, <a href="https://www.jacksonkunde.com/">Jackson Kunde</a>, <a href="https://yingfan-bot.github.io/">Ying Fan</a>, <a href="https://jungtaekkim.github.io/">Jungtaek Kim</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://people.eecs.berkeley.edu/~kannanr/">Kannan Ramchandran</a>, <a href="https://papail.io/">Dimitris Papailiopoulos</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICML 2025 Oral</span><span class="p-note">Top ~1%</span><a class="plink" href="https://github.com/UW-Madison-Lee-Lab/VersaPRM"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2506.05584">TabFlex: Scaling Tabular Learning to Millions with Linear Attention</a>
+                <p class="p-authors"><a href="https://yzeng58.github.io/">Yuchen Zeng</a>*, <a href="https://tuanqdinh.com/">Tuan Dinh</a>*, <b>Wonjun Kang</b>, <a href="https://amueller.github.io/">Andreas Mueller</a></p>
+                <p class="item-m"><span class="venue">ICML 2025 Spotlight</span><span class="p-note">Top 2.6%</span><a class="plink" href="https://github.com/microsoft/ticl/tree/develop"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2410.09016">Parameter-Efficient Fine-Tuning of State Space Models</a>
+                <p class="p-authors"><a href="https://kevingalim.com/">Kevin Galim</a>*, <b>Wonjun Kang</b>*, <a href="https://yzeng58.github.io/">Yuchen Zeng</a>*, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICML 2025</span><span class="p-note">*alphabetical order</span><a class="plink" href="https://github.com/furiosa-ai/ssm-peft"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2306.17567">Counting Guidance for High Fidelity Text-to-Image Synthesis</a>
+                <p class="p-authors"><b>Wonjun Kang</b>*, <a href="https://kevingalim.com/">Kevin Galim</a>*, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a></p>
+                <p class="item-m"><span class="venue">WACV 2025 Oral</span><a class="plink" href="https://github.com/furiosa-ai/counting-guidance"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://openreview.net/forum?id=ffDhpmwqdu">In-batch Ensemble Drafting: Robust Speculative Decoding for LVLMs</a>
+                <p class="p-authors"><a href="https://mjbooo.github.io/">Minjae Lee</a>*, <b>Wonjun Kang</b>*, Byeongkeun Ahn, <a href="https://christian-egg.github.io/">Christian Classen</a>, <a href="https://minghaoyan.netlify.app/">Minghao Yan</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">ICLR 2025 Workshop</span><span class="p-note">SCOPE</span></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2508.05399">UNCAGE: Contrastive Attention Guidance for Masked Generative Transformers in Text-to-Image Generation</a>
+                <p class="p-authors"><b>Wonjun Kang</b>, Byeongkeun Ahn, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://kevingalim.com/">Kevin Galim</a>, <a href="https://seunghyukoh.com/">Seunghyuk Oh</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a></p>
+                <p class="item-m"><span class="venue">IEEE Access</span><a class="plink" href="https://github.com/furiosa-ai/uncage"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://ieeexplore.ieee.org/document/11007558">Development of OCR Service for Page-Level Recognition for Camera-Captured Document Images</a>
+                <p class="p-authors">Junyoung Park, <b>Wonjun Kang</b>, Seonji Park, Keuntek Lee, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a></p>
+                <p class="item-m"><span class="venue">IEEE Access</span></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://arxiv.org/abs/2508.10395">XQuant: Breaking the Memory Wall for LLM Inference with KV Cache Rematerialization</a>
+                <p class="p-authors"><a href="https://www.adityatomar.org/">Aditya Tomar</a>*, <a href="https://colemanhooper.org/">Coleman Hooper</a>*, <a href="https://mjbooo.github.io/">Minjae Lee</a>, <a href="https://haochengxi.github.io/">Haocheng Xi</a>, <a href="https://rishabhtiwari.org/">Rishabh Tiwari</a>, <b>Wonjun Kang</b>, Luca Manolache, <a href="https://www.stat.berkeley.edu/~mmahoney/">Michael W. Mahoney</a>, <a href="https://www2.eecs.berkeley.edu/Faculty/Homepages/keutzer.html">Kurt Keutzer</a>, <a href="https://amirgholami.org/">Amir Gholami</a></p>
+                <p class="item-m"><span class="venue">arXiv</span></p>
+              </li>
+            </ul>
+          </section>
+          <section class="grp" aria-label="2024 and Earlier">
+            <h3 class="grp-h">2024 and Earlier<span class="gc">4</span></h3>
+            <ul class="pubs">
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2403.09468">Eta Inversion: Designing an Optimal Eta Function for Diffusion-based Real Image Editing</a>
+                <p class="p-authors"><b>Wonjun Kang</b>*, <a href="https://kevingalim.com/">Kevin Galim</a>*, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a></p>
+                <p class="item-m"><span class="venue">ECCV 2024</span><a class="plink" href="https://github.com/furiosa-ai/eta-inversion"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2402.01293">Can MLLMs Perform Text-to-Image In-Context Learning?</a>
+                <p class="p-authors"><a href="https://yzeng58.github.io/">Yuchen Zeng</a>*, <b>Wonjun Kang</b>*, <a href="https://bryce-chen.github.io/">Yicong Chen</a>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="https://kangwooklee.com/">Kangwook Lee</a></p>
+                <p class="item-m"><span class="venue">COLM 2024</span><a class="plink" href="https://github.com/UW-Madison-Lee-Lab/CoBSAT"><svg class="icon"><use href="#i-code"/></svg>Code</a></p>
+              </li>
+              <li class="pub" data-role="co">
+                <a class="p-title" href="https://ieeexplore.ieee.org/document/10579803">Face Swapping for Low-Resolution and Occluded Images In-the-Wild</a>
+                <p class="p-authors">Jaehyun Park, <b>Wonjun Kang</b>, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a></p>
+                <p class="item-m"><span class="venue">IEEE Access</span></p>
+              </li>
+              <li class="pub" data-role="first">
+                <a class="p-title" href="https://arxiv.org/abs/2205.13368">One-Shot Face Reenactment on Megapixels</a>
+                <p class="p-authors"><b>Wonjun Kang</b>, Geonsu Lee, <a href="https://sites.google.com/view/ajoucvml/professor">Hyung Il Koo</a>, <a href="http://ispl.snu.ac.kr/">Nam Ik Cho</a></p>
+                <p class="item-m"><span class="venue">arXiv</span></p>
+              </li>
+            </ul>
+          </section>
+          <!-- END paper list -->
+        </div>
       </section>
 
       <section class="sec" id="experience">
@@ -456,7 +640,6 @@
       const $ = (s, r = document) => r.querySelector(s);
       const $$ = (s, r = document) => [...r.querySelectorAll(s)];
       const root = document.documentElement;
-      const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
       // theme
       const sysDark = matchMedia("(prefers-color-scheme: dark)");
@@ -511,119 +694,21 @@
         n.classList.add("flash");
       });
 
-      // publications
-      const PUBS = [{"id": "Preprints", "entries": [{"title": "Elicitation or Expansion? Demystifying Gains from Agent Harness Optimization", "url": "https://arxiv.org/abs/2610.27889", "authors": "Younghyun Kim*, Wooseok Seo*, Minseo Kim, Seunghyuk Oh, Minjae Lee, Donghoon Kim, Hyung Il Koo, Jaehyung Kim&dagger;, <b>Wonjun Kang</b>&dagger;", "venue": "Under Review", "note": "", "links": [{"url": "https://furiosa-air.github.io/elicitation-or-expansion", "type": "project"}, {"url": "https://github.com/furiosa-ai/elicitation-or-expansion", "type": "code"}]}, {"title": "MetaCurate: Evolving Curation Filters for High-Quality Agentic Coding Data", "url": "https://arxiv.org/abs/2610.23134", "authors": "Donghoon Kim*, Seunghyuk Oh*, Kevin Galim, Minseo Kim, Minjae Lee, Younghyun Kim, Wooseok Seo, Hyung Il Koo, <b>Wonjun Kang</b>", "venue": "Under Review", "note": "", "links": [{"url": "https://furiosa-air.github.io/metacurate/", "type": "project"}, {"url": "https://github.com/furiosa-ai/MetaCurate", "type": "code"}]}, {"title": "Diagnosing and Correcting Reward Hacking in Verifiable Instruction Following", "url": "https://arxiv.org/abs/2610.19525", "authors": "Sangyeon Yoon*, Wooseok Seo*, Hamish Ivison, Hyesoo Hong, Donghoon Kim, <b>Wonjun Kang</b>, Albert No&dagger;, Jaehyung Kim&dagger;", "venue": "Under Review", "note": "", "links": [{"url": "https://github.com/ssangyeon/CALIF", "type": "code"}]}]}, {"id": "Pubs-2026", "entries": [{"title": "AsyncOPD: How Stale Can On-Policy Distillation Be?", "url": "https://arxiv.org/abs/2606.24143", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Seunghyuk Oh, Minjun Kang, Sanghyun Park, Donghoon Kim, Minjae Lee, Minseo Kim, Rishabh Tiwari, Yuchen Zeng, Hyung Il Koo, Kangwook Lee", "venue": "NeurIPS 2026", "note": "", "links": [{"url": "https://github.com/furiosa-ai/async-opd", "type": "code"}]}, {"title": "EfficientRollout: System-Aware Self-Speculative Decoding for RL Rollouts", "url": "https://arxiv.org/abs/2606.18967", "authors": "Minseo Kim*, Minjae Lee*, Seunghyuk Oh, Kevin Galim, Donghoon Kim, Coleman Hooper, Harman Singh, Amir Gholami, Hyung Il Koo, <b>Wonjun Kang</b>", "venue": "NeurIPS 2026", "note": "", "links": [{"url": "https://github.com/furiosa-ai/EfficientRollout", "type": "code"}]}, {"title": "GEPA-Curator: Curated Learning for Self Improving Agents", "url": "https://arxiv.org/abs/2610.37651", "authors": "Zack Yu*, Nicholas Lee*, Minjae Lee, Lakshya A Agrawal, Luca Manolache, <b>Wonjun Kang</b>, Matei Zaharia, Michael W. Mahoney, Kurt Keutzer, Sehoon Kim&dagger;, Amir Gholami&dagger;", "venue": "NeurIPS 2026", "note": "Pre-to-Post Workshop", "links": []}, {"title": "Characterizing High Bandwidth Flash for LLM Serving", "url": "https://arxiv.org/abs/2609.39131", "authors": "Zack Yu, Chloe Wong, Coleman Hooper, Minjae Lee, <b>Wonjun Kang</b>, Youngjin Cho, Michael W. Mahoney, Yakun Sophia Shao, Kurt Keutzer, Amir Gholami", "venue": "MICRO 2026", "note": "RAISE-Arch Workshop", "links": []}, {"title": "Scaling Test-Time Compute for DLLMs via Parallel Search", "url": "https://openreview.net/forum?id=b4EGkJZ5TP", "authors": "Saarth Gaonkar*, Sebastian Zhao*, Minjae Lee*, Coleman Hooper, <b>Wonjun Kang</b>, Michael W. Mahoney, Kurt Keutzer, Chenfeng Xu, Amir Gholami", "venue": "COLM 2026", "note": "NonAR-LM Workshop", "links": []}, {"title": "ReJump: A Tree-Jump Representation for Analyzing and Improving LLM Reasoning", "url": "https://arxiv.org/abs/2512.00831", "authors": "Yuchen Zeng*, Shuibai Zhang*, <b>Wonjun Kang</b>*, Shutong Wu, Lynnix Zou, Ying Fan, Heeju Kim, Ziqian Lin, Jungtaek Kim, Hyung Il Koo, Dimitris Papailiopoulos, Kangwook Lee", "venue": "ICML 2026", "note": "", "links": [{"url": "https://github.com/UW-Madison-Lee-Lab/ReJump", "type": "code"}]}, {"title": "LoSA: Locality Aware Sparse Attention for Block-Wise Diffusion Language Models", "url": "https://arxiv.org/abs/2604.12056", "authors": "Haocheng Xi, Harman Singh, Yuezhou Hu, Coleman Hooper, Rishabh Tiwari, Aditya Tomar, Minjae Lee, <b>Wonjun Kang</b>, Michael Mahoney, Chenfeng Xu, Kurt Keutzer, Amir Gholami", "venue": "ICML 2026", "note": "", "links": []}, {"title": "ParallelBench: Understanding the Trade-offs of Parallel Decoding in Diffusion LLMs", "url": "https://arxiv.org/abs/2510.04767", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Seunghyuk Oh*, Minjae Lee, Yuchen Zeng, Shuibai Zhang, Coleman Hooper, Yuezhou Hu, Hyung Il Koo, Nam Ik Cho, Kangwook Lee", "venue": "ICLR 2026", "note": "", "links": [{"url": "https://parallelbench.github.io", "type": "project"}, {"url": "https://github.com/furiosa-ai/ParallelBench", "type": "code"}]}, {"title": "Draft-based Approximate Inference for LLMs", "url": "https://arxiv.org/abs/2506.08373", "authors": "Kevin Galim*, Ethan Ewer*, <b>Wonjun Kang</b>, Minjae Lee, Hyung Il Koo, Kangwook Lee", "venue": "ICLR 2026", "note": "", "links": [{"url": "https://github.com/furiosa-ai/draft-based-approx-llm", "type": "code"}]}, {"title": "CATS: Inference-aligned SFT for Diffusion LLMs via Context-sensitivity Aware Trajectory Sampling", "url": "https://openreview.net/forum?id=RdMiEf9B0D", "authors": "Seunghyuk Oh, Minjae Lee, Kevin Galim, Minseo Kim, Hyung Il Koo, <b>Wonjun Kang</b>, Hanbaek Lyu, Kangwook Lee", "venue": "ICLR 2026", "note": "DeLTa Workshop", "links": []}, {"title": "TABED: Test-Time Adaptive Ensemble Drafting for Robust Speculative Decoding in LVLMs", "url": "https://arxiv.org/abs/2601.20357", "authors": "Minjae Lee*, <b>Wonjun Kang</b>*, Byeongkeun Ahn, Christian Classen, Kevin Galim, Seunghyuk Oh, Minghao Yan, Hyung Il Koo, Kangwook Lee", "venue": "EACL 2026", "note": "Findings", "links": []}]}, {"id": "Pubs-2025", "entries": [{"title": "State-offset Tuning: State-based Parameter-Efficient Fine-Tuning for State Space Models", "url": "https://arxiv.org/abs/2503.03499", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Yuchen Zeng*, Minjae Lee, Hyung Il Koo, Nam Ik Cho", "venue": "ACL 2025", "note": "Main", "links": [{"url": "https://github.com/furiosa-ai/ssm-state-tuning", "type": "code"}]}, {"title": "VersaPRM: Multi-Domain Process Reward Model via Synthetic Reasoning Data", "url": "https://arxiv.org/abs/2502.06737", "authors": "Thomas Zeng, Shuibai Zhang, Shutong Wu, Christian Classen, Daewon Chae, Ethan Ewer, Minjae Lee, Heeju Kim, <b>Wonjun Kang</b>, Jackson Kunde, Ying Fan, Jungtaek Kim, Hyung Il Koo, Kannan Ramchandran, Dimitris Papailiopoulos, Kangwook Lee", "venue": "ICML 2025", "note": "Oral, Top ~1%", "links": [{"url": "https://github.com/UW-Madison-Lee-Lab/VersaPRM", "type": "code"}]}, {"title": "TabFlex: Scaling Tabular Learning to Millions with Linear Attention", "url": "https://arxiv.org/abs/2506.05584", "authors": "Yuchen Zeng*, Tuan Dinh*, <b>Wonjun Kang</b>, Andreas Mueller", "venue": "ICML 2025", "note": "Spotlight, Top 2.6%", "links": [{"url": "https://github.com/microsoft/ticl/tree/develop", "type": "code"}]}, {"title": "Parameter-Efficient Fine-Tuning of State Space Models", "url": "https://arxiv.org/abs/2410.09016", "authors": "Kevin Galim*, <b>Wonjun Kang</b>*, Yuchen Zeng*, Hyung Il Koo, Kangwook Lee", "venue": "ICML 2025", "note": "*alphabetical order", "links": [{"url": "https://github.com/furiosa-ai/ssm-peft", "type": "code"}]}, {"title": "Counting Guidance for High Fidelity Text-to-Image Synthesis", "url": "https://arxiv.org/abs/2306.17567", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Hyung Il Koo, Nam Ik Cho", "venue": "WACV 2025", "note": "Oral", "links": [{"url": "https://github.com/furiosa-ai/counting-guidance", "type": "code"}]}, {"title": "In-batch Ensemble Drafting: Robust Speculative Decoding for LVLMs", "url": "https://openreview.net/forum?id=ffDhpmwqdu", "authors": "Minjae Lee*, <b>Wonjun Kang</b>*, Byeongkeun Ahn, Christian Classen, Minghao Yan, Hyung Il Koo, Kangwook Lee", "venue": "ICLR 2025", "note": "SCOPE Workshop", "links": []}, {"title": "UNCAGE: Contrastive Attention Guidance for Masked Generative Transformers in Text-to-Image Generation", "url": "https://arxiv.org/abs/2508.05399", "authors": "<b>Wonjun Kang</b>, Byeongkeun Ahn, Minjae Lee, Kevin Galim, Seunghyuk Oh, Hyung Il Koo, Nam Ik Cho", "venue": "IEEE Access", "note": "", "links": [{"url": "https://github.com/furiosa-ai/uncage", "type": "code"}]}, {"title": "Development of OCR Service for Page-Level Recognition for Camera-Captured Document Images", "url": "https://ieeexplore.ieee.org/document/11007558", "authors": "Junyoung Park, <b>Wonjun Kang</b>, Seonji Park, Keuntek Lee, Hyung Il Koo, Nam Ik Cho", "venue": "IEEE Access", "note": "", "links": []}, {"title": "XQuant: Breaking the Memory Wall for LLM Inference with KV Cache Rematerialization", "url": "https://arxiv.org/abs/2508.10395", "authors": "Aditya Tomar*, Coleman Hooper*, Minjae Lee, Haocheng Xi, Rishabh Tiwari, <b>Wonjun Kang</b>, Luca Manolache, Michael W. Mahoney, Kurt Keutzer, Amir Gholami", "venue": "Arxiv", "note": "", "links": []}]}, {"id": "Pubs-2024-and-Earlier", "entries": [{"title": "Eta Inversion: Designing an Optimal Eta Function for Diffusion-based Real Image Editing", "url": "https://arxiv.org/abs/2403.09468", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Hyung Il Koo", "venue": "ECCV 2024", "note": "", "links": [{"url": "https://github.com/furiosa-ai/eta-inversion", "type": "code"}]}, {"title": "Can MLLMs Perform Text-to-Image In-Context Learning?", "url": "https://arxiv.org/abs/2402.01293", "authors": "Yuchen Zeng*, <b>Wonjun Kang</b>*, Yicong Chen, Hyung Il Koo, Kangwook Lee", "venue": "COLM 2024", "note": "", "links": [{"url": "https://github.com/UW-Madison-Lee-Lab/CoBSAT", "type": "code"}]}, {"title": "Face Swapping for Low-Resolution and Occluded Images In-the-Wild", "url": "https://ieeexplore.ieee.org/document/10579803", "authors": "Jaehyun Park, <b>Wonjun Kang</b>, Hyung Il Koo, Nam Ik Cho", "venue": "IEEE Access", "note": "", "links": []}, {"title": "One-Shot Face Reenactment on Megapixels", "url": "https://arxiv.org/abs/2205.13368", "authors": "<b>Wonjun Kang</b>, Geonsu Lee, Hyung Il Koo, Nam Ik Cho", "venue": "Arxiv", "note": "", "links": []}]}];
-      const LABELS = { "Preprints": "Preprints", "Pubs-2026": "2026", "Pubs-2025": "2025", "Pubs-2024-and-Earlier": "2024 and Earlier" };
-      function isFirst(p) { return p.authors.startsWith("<b>Wonjun Kang</b>") || p.authors.includes("<b>Wonjun Kang</b>*"); }
-      function isLast(p) { const a = p.authors.trim(); return a.endsWith("<b>Wonjun Kang</b>") || /<b>Wonjun Kang<\/b>(&dagger;|†)/.test(a); }
-
-      // co-authors' homepages: add a name here and every paper that lists that author links to it.
-      // each address was opened and checked against the papers or the affiliation (2026-11-15); names without a homepage are left out.
-      // two people have no homepage and point to Google Scholar instead, using the profiles their own project pages link to
-      const AUTHOR_LINKS = {
-        "Aditya Tomar": "https://www.adityatomar.org/",
-        "Albert No": "https://ai-isl.yonsei.ac.kr/albert-no.html",
-        "Amir Gholami": "https://amirgholami.org/",
-        "Andreas Mueller": "https://amueller.github.io/",
-        "Chenfeng Xu": "https://chenfengx.com/",
-        "Christian Classen": "https://christian-egg.github.io/",
-        "Coleman Hooper": "https://colemanhooper.org/",
-        "Daewon Chae": "https://daewon88.github.io/",
-        "Dimitris Papailiopoulos": "https://papail.io/",
-        "Donghoon Kim": "https://scholar.google.com/citations?hl=en&user=FKPOG1EAAAAJ",
-        "Ethan Ewer": "https://sites.google.com/wisc.edu/ethan-ewer/about",
-        "Hamish Ivison": "https://ivison.id.au/",
-        "Hanbaek Lyu": "https://hanbaeklyu.com/",
-        "Haocheng Xi": "https://haochengxi.github.io/",
-        "Harman Singh": "https://harmandotpy.github.io/",
-        "Hyung Il Koo": "https://sites.google.com/view/ajoucvml/professor",
-        "Jackson Kunde": "https://www.jacksonkunde.com/",
-        "Jaehyung Kim": "https://sites.google.com/view/jaehyungkim",
-        "Jungtaek Kim": "https://jungtaekkim.github.io/",
-        "Kangwook Lee": "https://kangwooklee.com/",
-        "Kannan Ramchandran": "https://people.eecs.berkeley.edu/~kannanr/",
-        "Kevin Galim": "https://kevingalim.com/",
-        "Kurt Keutzer": "https://www2.eecs.berkeley.edu/Faculty/Homepages/keutzer.html",
-        "Lakshya A Agrawal": "https://lakshyaaagrawal.com/",
-        "Matei Zaharia": "https://people.eecs.berkeley.edu/~matei/",
-        "Michael Mahoney": "https://www.stat.berkeley.edu/~mmahoney/",
-        "Michael W. Mahoney": "https://www.stat.berkeley.edu/~mmahoney/",
-        "Minghao Yan": "https://minghaoyan.netlify.app/",
-        "Minjae Lee": "https://mjbooo.github.io/",
-        "Minseo Kim": "https://minseokim.org/",
-        "Nam Ik Cho": "http://ispl.snu.ac.kr/",
-        "Rishabh Tiwari": "https://rishabhtiwari.org/",
-        "Sangyeon Yoon": "https://ssangyeon.github.io/",
-        "Sebastian Zhao": "https://sebzhao.github.io/",
-        "Sehoon Kim": "https://sehoonkim.org/",
-        "Seunghyuk Oh": "https://seunghyukoh.com/",
-        "Shuibai Zhang": "https://zhangshuibai.github.io/",
-        "Shutong Wu": "https://cychomatica.github.io/",
-        "Thomas Zeng": "https://thomaspzeng.com/",
-        "Tuan Dinh": "https://tuanqdinh.com/",
-        "Wooseok Seo": "https://just1nseo.github.io/",
-        "Yakun Sophia Shao": "https://people.eecs.berkeley.edu/~ysshao/",
-        "Yicong Chen": "https://bryce-chen.github.io/",
-        "Ying Fan": "https://yingfan-bot.github.io/",
-        "Younghyun Kim": "https://scholar.google.com/citations?hl=en&user=Bk6pxR0AAAAJ",
-        "Yuchen Zeng": "https://yzeng58.github.io/",
-        "Yuezhou Hu": "https://yuezhouhu.github.io/",
-        "Ziqian Lin": "https://myhakureimu.github.io/",
-      };
-      // an author is written as a name plus optional marks (*, †); only names found in the list above get a link
-      function linkAuthors(html) {
-        return html.split(", ").map(part => {
-          const m = /^(.*?)((?:\*|&dagger;|†)*)$/.exec(part);
-          const url = AUTHOR_LINKS[m[1]];
-          return url ? `<a href="${esc(url)}">${m[1]}</a>${m[2]}` : part;
-        }).join(", ");
-      }
-
-      // the chip carries the venue and the kind of paper ("NeurIPS 2026 Workshop", "ICML 2025 Oral");
-      // what is left of the note (the workshop's name, "Top ~1%") follows it in gray
-      const WORKSHOP = /\s*Workshop$/;
-      const TRACKS = ["Oral", "Spotlight", "Main", "Findings"];
-      const VENUE_NAMES = { "Arxiv": "arXiv" };
-      function venueParts(p) {
-        const venue = VENUE_NAMES[p.venue] || p.venue;
-        if (WORKSHOP.test(p.note)) return { chip: `${venue} Workshop`, noteText: p.note.replace(WORKSHOP, "") };
-        const [head, ...rest] = p.note.split(", ");
-        if (TRACKS.includes(head)) return { chip: `${venue} ${head}`, noteText: rest.join(", ") };
-        return { chip: venue, noteText: p.note };
-      }
-      const groups = PUBS.map(g => ({
-        label: LABELS[g.id] || g.id,
-        items: g.entries.map(p => ({ ...p, role: isFirst(p) ? "first" : isLast(p) ? "last" : "co", ...venueParts(p) })),
-      }));
-      const all = groups.flatMap(g => g.items);
-      const total = { all: all.length, first: all.filter(p => p.role === "first").length, last: all.filter(p => p.role === "last").length };
-      $$(".filter button").forEach(b => { $(".c", b).textContent = total[b.dataset.f]; });
-
-      const linkIcon = type => `<svg class="icon"><use href="#${type === "code" ? "i-code" : "i-globe"}"/></svg>`;
-      $("#list").innerHTML = groups.map(g => `
-        <section class="grp" aria-label="${esc(g.label)}">
-          <h3 class="grp-h">${esc(g.label)}<span class="gc"></span></h3>
-          <ul class="pubs">${g.items.map(p => `
-            <li class="pub">
-              <a class="p-title" href="${esc(p.url)}">${esc(p.title)}</a>
-              <p class="p-authors">${linkAuthors(p.authors)}</p>
-              <p class="item-m"><span class="venue">${esc(p.chip)}</span>${p.noteText ? `<span class="p-note">${esc(p.noteText)}</span>` : ""}${p.links.map(l => `<a class="plink" href="${esc(l.url)}">${linkIcon(l.type)}${l.type === "code" ? "Code" : "Project Page"}</a>`).join("")}</p>
-            </li>`).join("")}
-          </ul>
-        </section>`).join("");
-      const grpEls = $$("#list .grp");
-      groups.forEach((g, i) => {
-        g.el = grpEls[i];
-        g.countEl = $(".gc", g.el);
-        $$(".pub", g.el).forEach((li, j) => { g.items[j].el = li; });
+      // publications: the list itself is already in the page (written by _pubs/build.py), so it shows without scripts.
+      // this part only counts and filters; each paper carries its role in data-role (first, last or co)
+      const groups = $$("#list .grp").map(el => ({ el, countEl: $(".gc", el), items: $$(".pub", el) }));
+      const pubs = groups.flatMap(g => g.items);
+      $$(".filter button").forEach(b => {
+        const f = b.dataset.f;
+        $(".c", b).textContent = f === "all" ? pubs.length : pubs.filter(li => li.dataset.role === f).length;
       });
 
       function apply(role) {
         groups.forEach(g => {
           let n = 0;
-          g.items.forEach(p => {
-            const ok = role === "all" || p.role === role;
-            p.el.hidden = !ok;
+          g.items.forEach(li => {
+            const ok = role === "all" || li.dataset.role === role;
+            li.hidden = !ok;
             if (ok) n++;
           });
           g.el.hidden = !n;
