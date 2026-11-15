@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Wonjun Kang (Beta v2)</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdfdfc;
+      --surface: #f3f3f0;
+      --line: #e9e8e5;
+      --line-2: #d6d5d0;
+      --text: #1a1a18;
+      --text-2: #55554f;
+      --text-3: #73726b;
+      --sel: #e4e2da;
+      --hover: #f8f8f6;
+      --chip-hover: #eae9e5;
+      --pad: 88px;
+      --ph: 253px;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121211;
+        --surface: #1e1e1c;
+        --line: #292926;
+        --line-2: #3d3c38;
+        --text: #ededea;
+        --text-2: #b4b3ac;
+        --text-3: #8e8d85;
+        --sel: #3b3a34;
+        --hover: #181817;
+        --chip-hover: #2a2a27;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #121211;
+      --surface: #1e1e1c;
+      --line: #292926;
+      --line-2: #3d3c38;
+      --text: #ededea;
+      --text-2: #b4b3ac;
+      --text-3: #8e8d85;
+      --sel: #3b3a34;
+      --hover: #181817;
+      --chip-hover: #2a2a27;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15.5px/1.65 "Geist", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection { background: var(--sel); }
+    a { color: inherit; text-decoration: none; }
+    p { text-wrap: pretty; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 4px; }
+    .icon { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    .u {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--line-2);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: text-decoration-color .15s;
+    }
+    .u:hover { text-decoration-color: currentColor; }
+    .ext { display: inline-flex; align-items: center; gap: 4px; color: var(--text-3); transition: color .15s; }
+    .ext:hover { color: var(--text); }
+    .ext .icon { width: 12px; height: 12px; transition: transform .15s; }
+    .ext:hover .icon { transform: translate(1px, -1px); }
+    .plink { display: inline-flex; align-items: center; gap: 5px; color: var(--text-3); transition: color .15s; }
+    .plink:hover { color: var(--text); }
+    .plink .icon { width: 13px; height: 13px; }
+
+    /* layout */
+    .page { display: grid; grid-template-columns: 280px minmax(0, 680px); justify-content: space-between; column-gap: 64px; max-width: 1140px; margin: 0 auto; padding: 0 48px; }
+    .panel { position: sticky; top: 0; height: 100vh; height: 100dvh; padding: var(--pad) 0 56px; display: flex; flex-direction: column; }
+    .main { padding: var(--pad) 0 80px; min-width: 0; }
+
+    /* identity panel */
+    /* the whole 3:4 photo, same framing as the live site; --ph is its height */
+    .avatar { width: calc(var(--ph) * .75); height: var(--ph); border-radius: 20px; overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--line); flex: none; }
+    .avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    h1 { margin: 24px 0 0; font-size: 30px; line-height: 1.12; font-weight: 650; letter-spacing: -.03em; }
+    h1 .ko { margin-left: 10px; font-size: 16.5px; font-weight: 450; letter-spacing: 0; color: var(--text-3); }
+    .role { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--text-2); }
+    .role a { color: var(--text); }
+    .nav { display: flex; flex-direction: column; }
+    .nav a { display: flex; align-items: center; gap: 14px; height: 30px; width: max-content; font-size: 13.5px; font-weight: 500; color: var(--text-3); transition: color .2s; }
+    .nav a::before { content: ""; width: 20px; height: 1px; background: var(--line-2); transition: width .2s, background .2s; }
+    .nav a:hover, .nav a.on { color: var(--text); }
+    .nav a:hover::before, .nav a.on::before { width: 44px; background: var(--text); }
+    .panel-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 32px; }
+    .links { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; font-size: 14px; }
+    .links li { display: flex; align-items: center; gap: 6px; }
+    .links a { display: inline-flex; align-items: center; gap: 9px; color: var(--text-2); transition: color .15s; }
+    .links a:hover { color: var(--text); }
+    .links a .icon { width: 15px; height: 15px; color: var(--text-3); transition: color .15s; }
+    .links a:hover .icon { color: var(--text); }
+    .ghost { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 8px; background: none; color: var(--text-3); cursor: pointer; transition: background .15s, color .15s; }
+    .ghost:hover { background: var(--surface); color: var(--text); }
+    .ghost .icon { width: 14px; height: 14px; }
+    #theme { width: 34px; height: 34px; border-radius: 10px; }
+    #theme .icon { width: 16px; height: 16px; }
+    #theme .sun { display: none; }
+    [data-theme="dark"] #theme .sun { display: block; }
+    [data-theme="dark"] #theme .moon { display: none; }
+
+    /* sections */
+    .sec { scroll-margin-top: var(--pad); }
+    .sec + .sec { margin-top: 72px; }
+    .sec-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; min-height: 28px; margin: 0 0 18px; }
+    h2 { margin: 0; font-size: 17px; line-height: 1.3; font-weight: 650; letter-spacing: -.015em; color: var(--text); }
+    .about { margin: 0; font-size: 16px; line-height: 1.72; color: var(--text-2); }
+    sup.fn { font-size: .68em; line-height: 0; margin-left: 1px; }
+    sup.fn a { padding: 0 2px; color: var(--text-3); font-weight: 600; }
+    sup.fn a:hover { color: var(--text); }
+    .note { margin: 16px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--text-3); border-radius: 6px; }
+    .note .n { margin-right: 3px; font-size: .76em; line-height: 0; vertical-align: super; font-weight: 500; }
+    .note b { font-weight: 600; color: var(--text-2); }
+    .note .u { color: var(--text-2); }
+    .note.flash { animation: flash 1.2s ease-out; }
+    @keyframes flash { 0%, 35% { background: var(--surface); box-shadow: 0 0 0 6px var(--surface); } 100% { background: transparent; box-shadow: 0 0 0 6px transparent; } }
+
+    .news { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .news li { display: grid; grid-template-columns: 84px minmax(0, 1fr); column-gap: 16px; font-size: 15px; line-height: 1.6; color: var(--text-2); }
+    .mono, .news time, .cv .when, .venue, .grp-h .gc, .filter .c { font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; }
+    .news time { font-size: 13px; line-height: 1.86; color: var(--text-3); font-variant-numeric: tabular-nums; }
+    .news b { font-weight: 600; color: var(--text); white-space: nowrap; }
+
+    .item-t { margin: 0; font-size: 15.5px; line-height: 1.45; font-weight: 600; letter-spacing: -.01em; }
+    .item-d { margin: 5px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--text-2); }
+    .item-m { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 8px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--text-3); }
+
+    /* publications */
+    .filter { display: flex; gap: 2px; margin-right: -10px; }
+    .filter button { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 0; border-radius: 8px; background: none; color: var(--text-3); font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s, color .15s; }
+    .filter button:hover { color: var(--text); }
+    .filter button[aria-checked="true"] { background: var(--surface); color: var(--text); }
+    .filter .c { font-size: 11.5px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+    .intro { margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-2); }
+    .intro b { font-weight: 600; color: var(--text); }
+    .blogs { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 12px 0 0; font-size: 13.5px; }
+    .legend { margin: 10px 0 0; font-size: 13px; color: var(--text-3); }
+    .grp { margin-top: 28px; }
+    .grp-h {
+      position: sticky; top: 0; z-index: 2;
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin: 0 -12px; padding: 10px 12px;
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      font-size: 13.5px; line-height: 1.4; font-weight: 600; color: var(--text);
+    }
+    .grp-h .gc { font-size: 12px; font-weight: 400; color: var(--text-3); font-variant-numeric: tabular-nums; }
+    .pubs { list-style: none; margin: 0; padding: 0; }
+    .pub { margin: 0 -12px; padding: 13px 12px; border-radius: 10px; transition: background .15s; }
+    /* the row under the pointer gets a faint background; nothing else about it changes, and touch screens skip it */
+    @media (hover: hover) {
+      .pub:hover { background: var(--hover); }
+      .pub:hover .venue { background: var(--chip-hover); }
+    }
+    .p-title { font-size: 15.5px; line-height: 1.45; font-weight: 600; letter-spacing: -.01em; color: var(--text); text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color .15s; }
+    .p-title:hover { text-decoration-color: var(--text-3); }
+    .p-authors { margin: 5px 0 0; font-size: 14px; line-height: 1.6; color: var(--text-2); }
+    .p-authors b { font-weight: 600; color: var(--text); }
+    .venue { display: inline-flex; align-items: center; height: 22px; padding: 0 7px; border-radius: 6px; background: var(--surface); color: var(--text); font-size: 12px; line-height: 1; font-weight: 500; white-space: nowrap; transition: background .15s; }
+
+    /* experience, education */
+    .cv { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+    .cv li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; }
+    .cv .org { font-size: 15.5px; line-height: 1.5; font-weight: 600; letter-spacing: -.01em; }
+    .cv .when { font-size: 13px; line-height: 1.79; color: var(--text-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .cv .det { grid-column: 1; margin-top: 2px; font-size: 14.5px; line-height: 1.6; color: var(--text-2); }
+    /* a remark about the period, right-aligned under it on the degree's line */
+    .cv .when-note { grid-column: 2; grid-row: 2; justify-self: end; margin-top: 2px; font-size: 13.5px; line-height: 1.72; color: var(--text-3); white-space: nowrap; }
+    .cv .sub { grid-column: 1; margin-top: 3px; font-size: 13.5px; line-height: 1.6; color: var(--text-3); }
+    .svc { margin: 0; font-size: 15px; color: var(--text-2); }
+    .svc b { font-weight: 600; color: var(--text); }
+
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin-top: 88px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--text-3); }
+    .foot a { transition: color .15s; }
+    .foot a:hover { color: var(--text); }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 28px; z-index: 50;
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 14px; border-radius: 10px;
+      background: var(--text); color: var(--bg); font-size: 13.5px; font-weight: 500;
+      transform: translate(-50%, 10px); opacity: 0; pointer-events: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* the fixed column must fit the window: on shorter desktop windows the spacing tightens first, then the portrait shrinks */
+    @media (min-width: 1024px) and (max-height: 900px) {
+      :root { --pad: 56px; --ph: clamp(76px, 100vh - 568px, 253px); }
+      .panel { padding-bottom: 36px; }
+      .nav a { height: 26px; }
+    }
+    @media (min-width: 1024px) and (max-height: 648px) {
+      .avatar { display: none; }
+      h1 { margin-top: 0; }
+    }
+    @media (max-width: 1119px) and (min-width: 1024px) {
+      .page { column-gap: 40px; padding: 0 32px; }
+    }
+    /* one column */
+    @media (max-width: 1023px) {
+      :root { --pad: 24px; --ph: 224px; }
+      .page { display: block; max-width: 728px; padding: 0 24px; }
+      .panel { position: relative; height: auto; display: block; padding: 56px 0 0; }
+      .avatar { border-radius: 18px; }
+      h1 { margin-top: 20px; font-size: 28px; }
+      .nav { display: none; }
+      .panel-foot { display: block; margin: 0; padding: 0; }
+      .links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+      #theme { position: absolute; top: 20px; right: -6px; }
+      .main { padding: 52px 0 64px; }
+      .sec + .sec { margin-top: 56px; }
+      .foot { margin-top: 64px; }
+    }
+    @media (max-width: 560px) {
+      :root { --ph: 210px; }
+      .page { padding: 0 20px; }
+      .panel { padding-top: 44px; }
+      #theme { top: 12px; }
+      h1 { font-size: 27px; }
+      .about { font-size: 15.5px; }
+      .news li { grid-template-columns: minmax(0, 1fr); }
+      .news time { font-size: 12.5px; line-height: 1.6; }
+      .filter { margin: 0 0 0 -10px; width: 100%; }
+      .grp-h { margin: 0 -20px; padding: 10px 20px; }
+      .cv li { grid-template-columns: minmax(0, 1fr); }
+      .cv .when { margin-top: 2px; font-size: 12.5px; order: 3; }
+      .cv .when-note { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 0; font-size: 13px; line-height: 1.6; order: 4; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-scholar" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  </svg>
+
+  <div class="page" id="top">
+    <header class="panel">
+      <div class="avatar"><img src="../images/wj_crop2.jpeg" alt="Wonjun Kang" width="768" height="1024"></div>
+      <h1>Wonjun Kang<span class="ko" lang="ko">강원준</span></h1>
+      <p class="role">Member of Technical Staff<br>AI Research Lead<br><a class="u" href="https://furiosa.ai/">FuriosaAI</a></p>
+
+      <ul class="links">
+        <li><a href="https://scholar.google.com/citations?hl=en&user=Q-ARWkwAAAAJ"><svg class="icon"><use href="#i-scholar"/></svg>Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/wonjun-kang-43b181342/"><svg class="icon"><use href="#i-in"/></svg>LinkedIn</a></li>
+        <li><a href="mailto:kangwj1995@snu.ac.kr"><svg class="icon"><use href="#i-mail"/></svg>kangwj1995@snu.ac.kr</a><button class="ghost" id="copy-email" type="button" aria-label="Copy email address" title="Copy email address"><svg class="icon"><use href="#i-copy"/></svg></button></li>
+      </ul>
+
+      <div class="panel-foot">
+        <nav class="nav" aria-label="Sections">
+          <a href="#about" data-sec="about">About Me</a>
+          <a href="#news" data-sec="news">News</a>
+          <a href="#projects" data-sec="projects">Projects</a>
+          <a href="#publications" data-sec="publications">Publications</a>
+          <a href="#experience" data-sec="experience">Work Experience</a>
+          <a href="#education" data-sec="education">Education</a>
+          <a href="#service" data-sec="service">Academic Service</a>
+        </nav>
+        <button class="ghost" id="theme" type="button"><svg class="icon moon"><use href="#i-moon"/></svg><svg class="icon sun"><use href="#i-sun"/></svg></button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="sec" id="about">
+        <div class="sec-h"><h2>About Me</h2></div>
+        <p class="about">I am a Member of Technical Staff at <a class="u" href="https://furiosa.ai/">FuriosaAI</a><sup class="fn"><a href="#note-1" id="fnref-1" aria-label="Note 1">1</a></sup>, where I lead the <a class="u" href="https://furiosa.ai/research">AI Research Team</a>.
+          I received my Ph.D. in Electrical and Computer Engineering from <a class="u" href="https://www.snu.ac.kr/">Seoul National University</a>, advised by Prof. <a class="u" href="http://ispl.snu.ac.kr/">Nam Ik Cho</a>.
+          Before that, I received my B.S. from the same department.</p>
+        <p class="note" id="note-1"><sup class="n">1</sup>FuriosaAI closed a <b>$620M Series D</b> at a <b>$2.9B valuation</b> in October 2026. <a class="u" href="https://furiosa.ai/blog/furiosaai-620-million-series-d">Blog</a> &middot; <a class="u" href="https://www.bloomberg.com/news/articles/2026-10-28/furiosaai-quadruples-valuation-to-2-9-billion-in-nvidia-chase">Bloomberg</a></p>
+      </section>
+
+      <section class="sec" id="news">
+        <div class="sec-h"><h2>News</h2></div>
+        <ul class="news">
+          <li><time>Sep 2026</time><span>Two papers (<a class="u" href="https://arxiv.org/abs/2606.24143">AsyncOPD</a>, <a class="u" href="https://arxiv.org/abs/2606.18967">EfficientRollout</a>) accepted to <b>NeurIPS 2026</b>.</span></li>
+          <li><time>Aug 2026</time><span>Received my Ph.D. from Seoul National University.</span></li>
+          <li><time>May 2026</time><span>Two papers (<a class="u" href="https://arxiv.org/abs/2512.00831">ReJump</a>, <a class="u" href="https://arxiv.org/abs/2604.12056">LoSA</a>) accepted to <b>ICML 2026</b>.</span></li>
+          <li><time>Jan 2026</time><span>Two papers (<a class="u" href="https://arxiv.org/abs/2510.04767">ParallelBench</a>, <a class="u" href="https://arxiv.org/abs/2506.08373">Draft-based Approximate Inference</a>) accepted to <b>ICLR 2026</b>.</span></li>
+        </ul>
+      </section>
+
+      <section class="sec" id="projects">
+        <div class="sec-h"><h2>Projects</h2></div>
+        <h3 class="item-t">OCR System Development with ePopSoft</h3>
+        <p class="item-d">Developed a pipeline of computer vision models (text detection and recognition) deployed on Furiosa's Gen 1 Vision NPU.</p>
+        <p class="item-m"><a class="ext" href="https://furiosa.ai/blog/koreas-most-popular-language-instruction-app-uses-warboy-to-translate-text-in-images-2">Blog<svg class="icon"><use href="#i-arrow"/></svg></a></p>
+      </section>
+
+      <section class="sec" id="publications">
+        <div class="sec-h">
+          <h2>Publications</h2>
+          <div class="filter" role="radiogroup" aria-label="Filter publications">
+            <button type="button" role="radio" aria-checked="true" tabindex="0" data-f="all">All<span class="c"></span></button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-f="first">First author<span class="c"></span></button>
+            <button type="button" role="radio" aria-checked="false" tabindex="-1" data-f="last">Last author<span class="c"></span></button>
+          </div>
+        </div>
+        <p class="intro">My research interests are broad, with first-authored publications spanning Machine Learning (<b>NeurIPS, ICML, ICLR</b>), Computer Vision (<b>ECCV, WACV</b>), and Natural Language Processing (<b>COLM, ACL, EACL</b>).</p>
+        <p class="blogs">
+          <a class="ext" href="https://furiosa.ai/blog/furiosaai-at-icml-2026-advancing-full-stack-software-efficiency">Blog: ICML 2026<svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="ext" href="https://furiosa.ai/blog/furiosa-presents-papers-about-improving-ai-performance-at-icml-2025-and-acl-2025">Blog: ICML &amp; ACL 2025<svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="ext" href="https://furiosa.ai/blog/furiosaai-presents-papers-at-eccv-colm-conference-to-improve-ai-image-generation">Blog: ECCV &amp; COLM 2024<svg class="icon"><use href="#i-arrow"/></svg></a>
+        </p>
+        <p class="legend">* equal contribution, &dagger; equal advising</p>
+        <div id="list"></div>
+      </section>
+
+      <section class="sec" id="experience">
+        <div class="sec-h"><h2>Work Experience</h2></div>
+        <ul class="cv">
+          <li><span class="org"><a class="u" href="https://furiosa.ai/">FuriosaAI</a></span><span class="when">Jun 2021 – Present</span><span class="det">Member of Technical Staff, AI Research Lead</span></li>
+        </ul>
+      </section>
+
+      <section class="sec" id="education">
+        <div class="sec-h"><h2>Education</h2></div>
+        <ul class="cv">
+          <li><span class="org"><a class="u" href="https://www.snu.ac.kr/">Seoul National University</a></span><span class="when">Mar 2020 – Aug 2026</span><span class="det">Ph.D. in Electrical and Computer Engineering</span></li>
+          <li><span class="org"><a class="u" href="https://www.snu.ac.kr/">Seoul National University</a></span><span class="when">Mar 2014 – Feb 2020</span><span class="det">B.S. in Electrical and Computer Engineering</span><span class="when-note">Military leave: 2.5 years</span><span class="sub">GPA: 4.00/4.30 (Summa Cum Laude)</span></li>
+          <li><span class="org"><a class="u" href="https://sshs.sen.hs.kr/">Seoul Science High School</a></span><span class="when">Mar 2011 – Feb 2014</span></li>
+        </ul>
+      </section>
+
+      <section class="sec" id="service">
+        <div class="sec-h"><h2>Academic Service</h2></div>
+        <p class="svc"><b>Reviewer:</b> NeurIPS, ICML, ICLR, COLM, ACL ARR, AAAI, TMLR</p>
+      </section>
+
+      <footer class="foot">
+        <span>&copy; 2026 Wonjun Kang</span>
+        <a href="#top">Back to top</a>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg class="icon"><use href="#i-check"/></svg><span></span></div>
+
+  <script>
+    (() => {
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+      const root = document.documentElement;
+      const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+      // theme
+      const sysDark = matchMedia("(prefers-color-scheme: dark)");
+      function saved() { try { return localStorage.getItem("theme"); } catch (e) { return null; } }
+      function syncTheme() {
+        $("#theme").setAttribute("aria-label", root.dataset.theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+      }
+      $("#theme").addEventListener("click", () => {
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        syncTheme();
+      });
+      sysDark.addEventListener("change", e => {
+        if (saved()) return;
+        root.dataset.theme = e.matches ? "dark" : "light";
+        syncTheme();
+      });
+      syncTheme();
+
+      // copy email
+      let toastTimer;
+      function toast(msg) {
+        const t = $("#toast");
+        $("span", t).textContent = msg;
+        t.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+      }
+      $("#copy-email").addEventListener("click", async () => {
+        const text = "kangwj1995@snu.ac.kr";
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (e) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.cssText = "position: fixed; opacity: 0";
+          document.body.append(ta);
+          ta.select();
+          try { document.execCommand("copy"); } catch (e2) {}
+          ta.remove();
+        }
+        toast("Email copied");
+      });
+
+      // footnote
+      $("#fnref-1").addEventListener("click", () => {
+        const n = $("#note-1");
+        n.classList.remove("flash");
+        void n.offsetWidth;
+        n.classList.add("flash");
+      });
+
+      // publications
+      const PUBS = [{"id": "Preprints", "entries": [{"title": "Elicitation or Expansion? Demystifying Gains from Agent Harness Optimization", "url": "https://arxiv.org/abs/2610.27889", "authors": "Younghyun Kim*, Wooseok Seo*, Minseo Kim, Seunghyuk Oh, Minjae Lee, Donghoon Kim, Hyung Il Koo, Jaehyung Kim&dagger;, <b>Wonjun Kang</b>&dagger;", "venue": "Under Review", "note": "", "links": [{"url": "https://furiosa-air.github.io/elicitation-or-expansion", "type": "project"}, {"url": "https://github.com/furiosa-ai/elicitation-or-expansion", "type": "code"}]}, {"title": "MetaCurate: Evolving Curation Filters for High-Quality Agentic Coding Data", "url": "https://arxiv.org/abs/2610.23134", "authors": "Donghoon Kim*, Seunghyuk Oh*, Kevin Galim, Minseo Kim, Minjae Lee, Younghyun Kim, Wooseok Seo, Hyung Il Koo, <b>Wonjun Kang</b>", "venue": "Under Review", "note": "", "links": [{"url": "https://furiosa-air.github.io/metacurate/", "type": "project"}, {"url": "https://github.com/furiosa-ai/MetaCurate", "type": "code"}]}, {"title": "Diagnosing and Correcting Reward Hacking in Verifiable Instruction Following", "url": "https://arxiv.org/abs/2610.19525", "authors": "Sangyeon Yoon*, Wooseok Seo*, Hamish Ivison, Hyesoo Hong, Donghoon Kim, <b>Wonjun Kang</b>, Albert No&dagger;, Jaehyung Kim&dagger;", "venue": "Under Review", "note": "", "links": [{"url": "https://github.com/ssangyeon/CALIF", "type": "code"}]}]}, {"id": "Pubs-2026", "entries": [{"title": "AsyncOPD: How Stale Can On-Policy Distillation Be?", "url": "https://arxiv.org/abs/2606.24143", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Seunghyuk Oh, Minjun Kang, Sanghyun Park, Donghoon Kim, Minjae Lee, Minseo Kim, Rishabh Tiwari, Yuchen Zeng, Hyung Il Koo, Kangwook Lee", "venue": "NeurIPS 2026", "note": "", "links": [{"url": "https://github.com/furiosa-ai/async-opd", "type": "code"}]}, {"title": "EfficientRollout: System-Aware Self-Speculative Decoding for RL Rollouts", "url": "https://arxiv.org/abs/2606.18967", "authors": "Minseo Kim*, Minjae Lee*, Seunghyuk Oh, Kevin Galim, Donghoon Kim, Coleman Hooper, Harman Singh, Amir Gholami, Hyung Il Koo, <b>Wonjun Kang</b>", "venue": "NeurIPS 2026", "note": "", "links": [{"url": "https://github.com/furiosa-ai/EfficientRollout", "type": "code"}]}, {"title": "GEPA-Curator: Curated Learning for Self Improving Agents", "url": "https://arxiv.org/abs/2610.37651", "authors": "Zack Yu*, Nicholas Lee*, Minjae Lee, Lakshya Agarwal, Luca Manolache, <b>Wonjun Kang</b>, Matei Zaharia, Michael W. Mahoney, Kurt Keutzer, Sehoon Kim&dagger;, Amir Gholami&dagger;", "venue": "NeurIPS 2026", "note": "Pre-to-Post Workshop", "links": []}, {"title": "Characterizing High Bandwidth Flash for LLM Serving", "url": "https://arxiv.org/abs/2609.39131", "authors": "Zack Yu, Chloe Wong, Coleman Hooper, Minjae Lee, <b>Wonjun Kang</b>, Youngjin Cho, Michael W. Mahoney, Yakun Sophia Shao, Kurt Keutzer, Amir Gholami", "venue": "MICRO 2026", "note": "RAISE-Arch Workshop", "links": []}, {"title": "Scaling Test-Time Compute for DLLMs via Parallel Search", "url": "https://openreview.net/forum?id=b4EGkJZ5TP", "authors": "Saarth Gaonkar*, Sebastian Zhao*, Minjae Lee*, Coleman Hooper, <b>Wonjun Kang</b>, Michael W. Mahoney, Kurt Keutzer, Chenfeng Xu, Amir Gholami", "venue": "COLM 2026", "note": "NonAR-LM Workshop", "links": []}, {"title": "ReJump: A Tree-Jump Representation for Analyzing and Improving LLM Reasoning", "url": "https://arxiv.org/abs/2512.00831", "authors": "Yuchen Zeng*, Shuibai Zhang*, <b>Wonjun Kang</b>*, Shutong Wu, Lynnix Zou, Ying Fan, Heeju Kim, Ziqian Lin, Jungtaek Kim, Hyung Il Koo, Dimitris Papailiopoulos, Kangwook Lee", "venue": "ICML 2026", "note": "", "links": [{"url": "https://github.com/UW-Madison-Lee-Lab/ReJump", "type": "code"}]}, {"title": "LoSA: Locality Aware Sparse Attention for Block-Wise Diffusion Language Models", "url": "https://arxiv.org/abs/2604.12056", "authors": "Haocheng Xi, Harman Singh, Yuezhou Hu, Coleman Hooper, Rishabh Tiwari, Aditya Tomar, Minjae Lee, <b>Wonjun Kang</b>, Michael Mahoney, Chenfeng Xu, Kurt Keutzer, Amir Gholami", "venue": "ICML 2026", "note": "", "links": []}, {"title": "ParallelBench: Understanding the Trade-offs of Parallel Decoding in Diffusion LLMs", "url": "https://arxiv.org/abs/2510.04767", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Seunghyuk Oh*, Minjae Lee, Yuchen Zeng, Shuibai Zhang, Coleman Hooper, Yuezhou Hu, Hyung Il Koo, Nam Ik Cho, Kangwook Lee", "venue": "ICLR 2026", "note": "", "links": [{"url": "https://parallelbench.github.io", "type": "project"}, {"url": "https://github.com/furiosa-ai/ParallelBench", "type": "code"}]}, {"title": "Draft-based Approximate Inference for LLMs", "url": "https://arxiv.org/abs/2506.08373", "authors": "Kevin Galim*, Ethan Ewer*, <b>Wonjun Kang</b>, Minjae Lee, Hyung Il Koo, Kangwook Lee", "venue": "ICLR 2026", "note": "", "links": [{"url": "https://github.com/furiosa-ai/draft-based-approx-llm", "type": "code"}]}, {"title": "CATS: Inference-aligned SFT for Diffusion LLMs via Context-sensitivity Aware Trajectory Sampling", "url": "https://openreview.net/forum?id=RdMiEf9B0D", "authors": "Seunghyuk Oh, Minjae Lee, Kevin Galim, Minseo Kim, Hyung Il Koo, <b>Wonjun Kang</b>, Hanbaek Lyu, Kangwook Lee", "venue": "ICLR 2026", "note": "DeLTa Workshop", "links": []}, {"title": "TABED: Test-Time Adaptive Ensemble Drafting for Robust Speculative Decoding in LVLMs", "url": "https://arxiv.org/abs/2601.20357", "authors": "Minjae Lee*, <b>Wonjun Kang</b>*, Byeongkeun Ahn, Christian Classen, Kevin Galim, Seunghyuk Oh, Minghao Yan, Hyung Il Koo, Kangwook Lee", "venue": "EACL 2026", "note": "Findings", "links": []}]}, {"id": "Pubs-2025", "entries": [{"title": "State-offset Tuning: State-based Parameter-Efficient Fine-Tuning for State Space Models", "url": "https://arxiv.org/abs/2503.03499", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Yuchen Zeng*, Minjae Lee, Hyung Il Koo, Nam Ik Cho", "venue": "ACL 2025", "note": "Main", "links": [{"url": "https://github.com/furiosa-ai/ssm-state-tuning", "type": "code"}]}, {"title": "VersaPRM: Multi-Domain Process Reward Model via Synthetic Reasoning Data", "url": "https://arxiv.org/abs/2502.06737", "authors": "Thomas Zeng, Shuibai Zhang, Shutong Wu, Christian Classen, Daewon Chae, Ethan Ewer, Minjae Lee, Heeju Kim, <b>Wonjun Kang</b>, Jackson Kunde, Ying Fan, Jungtaek Kim, Hyung Il Koo, Kannan Ramchandran, Dimitris Papailiopoulos, Kangwook Lee", "venue": "ICML 2025", "note": "Oral, Top ~1%", "links": [{"url": "https://github.com/UW-Madison-Lee-Lab/VersaPRM", "type": "code"}]}, {"title": "TabFlex: Scaling Tabular Learning to Millions with Linear Attention", "url": "https://arxiv.org/abs/2506.05584", "authors": "Yuchen Zeng*, Tuan Dinh*, <b>Wonjun Kang</b>, Andreas Mueller", "venue": "ICML 2025", "note": "Spotlight, Top 2.6%", "links": [{"url": "https://github.com/microsoft/ticl/tree/develop", "type": "code"}]}, {"title": "Parameter-Efficient Fine-Tuning of State Space Models", "url": "https://arxiv.org/abs/2410.09016", "authors": "Kevin Galim*, <b>Wonjun Kang</b>*, Yuchen Zeng*, Hyung Il Koo, Kangwook Lee", "venue": "ICML 2025", "note": "*alphabetical order", "links": [{"url": "https://github.com/furiosa-ai/ssm-peft", "type": "code"}]}, {"title": "Counting Guidance for High Fidelity Text-to-Image Synthesis", "url": "https://arxiv.org/abs/2306.17567", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Hyung Il Koo, Nam Ik Cho", "venue": "WACV 2025", "note": "Oral", "links": [{"url": "https://github.com/furiosa-ai/counting-guidance", "type": "code"}]}, {"title": "In-batch Ensemble Drafting: Robust Speculative Decoding for LVLMs", "url": "https://openreview.net/forum?id=ffDhpmwqdu", "authors": "Minjae Lee*, <b>Wonjun Kang</b>*, Byeongkeun Ahn, Christian Classen, Minghao Yan, Hyung Il Koo, Kangwook Lee", "venue": "ICLR 2025", "note": "SCOPE Workshop", "links": []}, {"title": "UNCAGE: Contrastive Attention Guidance for Masked Generative Transformers in Text-to-Image Generation", "url": "https://arxiv.org/abs/2508.05399", "authors": "<b>Wonjun Kang</b>, Byeongkeun Ahn, Minjae Lee, Kevin Galim, Seunghyuk Oh, Hyung Il Koo, Nam Ik Cho", "venue": "IEEE Access", "note": "", "links": [{"url": "https://github.com/furiosa-ai/uncage", "type": "code"}]}, {"title": "Development of OCR Service for Page-Level Recognition for Camera-Captured Document Images", "url": "https://ieeexplore.ieee.org/document/11007558", "authors": "Junyoung Park, <b>Wonjun Kang</b>, Seonji Park, Keuntek Lee, Hyung Il Koo, Nam Ik Cho", "venue": "IEEE Access", "note": "", "links": []}, {"title": "XQuant: Breaking the Memory Wall for LLM Inference with KV Cache Rematerialization", "url": "https://arxiv.org/abs/2508.10395", "authors": "Aditya Tomar*, Coleman Hooper*, Minjae Lee, Haocheng Xi, Rishabh Tiwari, <b>Wonjun Kang</b>, Luca Manolache, Michael W. Mahoney, Kurt Keutzer, Amir Gholami", "venue": "Arxiv", "note": "", "links": []}]}, {"id": "Pubs-2024-and-Earlier", "entries": [{"title": "Eta Inversion: Designing an Optimal Eta Function for Diffusion-based Real Image Editing", "url": "https://arxiv.org/abs/2403.09468", "authors": "<b>Wonjun Kang</b>*, Kevin Galim*, Hyung Il Koo", "venue": "ECCV 2024", "note": "", "links": [{"url": "https://github.com/furiosa-ai/eta-inversion", "type": "code"}]}, {"title": "Can MLLMs Perform Text-to-Image In-Context Learning?", "url": "https://arxiv.org/abs/2402.01293", "authors": "Yuchen Zeng*, <b>Wonjun Kang</b>*, Yicong Chen, Hyung Il Koo, Kangwook Lee", "venue": "COLM 2024", "note": "", "links": [{"url": "https://github.com/UW-Madison-Lee-Lab/CoBSAT", "type": "code"}]}, {"title": "Face Swapping for Low-Resolution and Occluded Images In-the-Wild", "url": "https://ieeexplore.ieee.org/document/10579803", "authors": "Jaehyun Park, <b>Wonjun Kang</b>, Hyung Il Koo, Nam Ik Cho", "venue": "IEEE Access", "note": "", "links": []}, {"title": "One-Shot Face Reenactment on Megapixels", "url": "https://arxiv.org/abs/2205.13368", "authors": "<b>Wonjun Kang</b>, Geonsu Lee, Hyung Il Koo, Nam Ik Cho", "venue": "Arxiv", "note": "", "links": []}]}];
+      const LABELS = { "Preprints": "Preprints", "Pubs-2026": "2026", "Pubs-2025": "2025", "Pubs-2024-and-Earlier": "2024 and Earlier" };
+      function isFirst(p) { return p.authors.startsWith("<b>Wonjun Kang</b>") || p.authors.includes("<b>Wonjun Kang</b>*"); }
+      function isLast(p) { const a = p.authors.trim(); return a.endsWith("<b>Wonjun Kang</b>") || /<b>Wonjun Kang<\/b>(&dagger;|†)/.test(a); }
+
+      // the chip carries the venue and the kind of paper ("NeurIPS 2026 Workshop", "ICML 2025 Oral");
+      // what is left of the note (the workshop's name, "Top ~1%") follows it in gray
+      const WORKSHOP = /\s*Workshop$/;
+      const TRACKS = ["Oral", "Spotlight", "Main", "Findings"];
+      const VENUE_NAMES = { "Arxiv": "arXiv" };
+      function venueParts(p) {
+        const venue = VENUE_NAMES[p.venue] || p.venue;
+        if (WORKSHOP.test(p.note)) return { chip: `${venue} Workshop`, noteText: p.note.replace(WORKSHOP, "") };
+        const [head, ...rest] = p.note.split(", ");
+        if (TRACKS.includes(head)) return { chip: `${venue} ${head}`, noteText: rest.join(", ") };
+        return { chip: venue, noteText: p.note };
+      }
+      const groups = PUBS.map(g => ({
+        label: LABELS[g.id] || g.id,
+        items: g.entries.map(p => ({ ...p, role: isFirst(p) ? "first" : isLast(p) ? "last" : "co", ...venueParts(p) })),
+      }));
+      const all = groups.flatMap(g => g.items);
+      const total = { all: all.length, first: all.filter(p => p.role === "first").length, last: all.filter(p => p.role === "last").length };
+      $$(".filter button").forEach(b => { $(".c", b).textContent = total[b.dataset.f]; });
+
+      const linkIcon = type => `<svg class="icon"><use href="#${type === "code" ? "i-code" : "i-globe"}"/></svg>`;
+      $("#list").innerHTML = groups.map(g => `
+        <section class="grp" aria-label="${esc(g.label)}">
+          <h3 class="grp-h">${esc(g.label)}<span class="gc"></span></h3>
+          <ul class="pubs">${g.items.map(p => `
+            <li class="pub">
+              <a class="p-title" href="${esc(p.url)}">${esc(p.title)}</a>
+              <p class="p-authors">${p.authors}</p>
+              <p class="item-m"><span class="venue">${esc(p.chip)}</span>${p.noteText ? `<span class="p-note">${esc(p.noteText)}</span>` : ""}${p.links.map(l => `<a class="plink" href="${esc(l.url)}">${linkIcon(l.type)}${l.type === "code" ? "Code" : "Project Page"}</a>`).join("")}</p>
+            </li>`).join("")}
+          </ul>
+        </section>`).join("");
+      const grpEls = $$("#list .grp");
+      groups.forEach((g, i) => {
+        g.el = grpEls[i];
+        g.countEl = $(".gc", g.el);
+        $$(".pub", g.el).forEach((li, j) => { g.items[j].el = li; });
+      });
+
+      function apply(role) {
+        groups.forEach(g => {
+          let n = 0;
+          g.items.forEach(p => {
+            const ok = role === "all" || p.role === role;
+            p.el.hidden = !ok;
+            if (ok) n++;
+          });
+          g.el.hidden = !n;
+          g.countEl.textContent = n;
+        });
+      }
+      const tabs = $$(".filter button");
+      function setRole(r, focus) {
+        tabs.forEach(b => {
+          const on = b.dataset.f === r;
+          b.setAttribute("aria-checked", on);
+          b.tabIndex = on ? 0 : -1;
+          if (on && focus) b.focus();
+        });
+        apply(r);
+      }
+      tabs.forEach((b, i) => {
+        b.addEventListener("click", () => setRole(b.dataset.f));
+        b.addEventListener("keydown", e => {
+          const d = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
+          if (!d) return;
+          e.preventDefault();
+          setRole(tabs[(i + d + tabs.length) % tabs.length].dataset.f, true);
+        });
+      });
+      apply("all");
+
+      // current section in the side nav
+      const links = $$(".nav a");
+      const secs = links.map(a => $("#" + a.dataset.sec));
+      let ticking = false, picked = -1;
+      function spy() {
+        ticking = false;
+        // the marker line sits a quarter down the window and slides to the bottom near the end of the page,
+        // so the short last sections still get their turn
+        const h = innerHeight, left = root.scrollHeight - h - scrollY;
+        const line = h * .25 + Math.max(0, 1 - left / h) * h * .75;
+        let cur = 0;
+        secs.forEach((s, i) => { if (s.getBoundingClientRect().top < line) cur = i; });
+        if (picked >= 0) cur = picked;
+        links.forEach((a, i) => {
+          a.classList.toggle("on", i === cur);
+          if (i === cur) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+        });
+      }
+      addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+      addEventListener("resize", spy);
+      // a clicked link stays marked until the reader scrolls on their own
+      links.forEach((a, i) => a.addEventListener("click", () => { picked = i; spy(); }));
+      ["wheel", "touchmove", "keydown"].forEach(t => addEventListener(t, () => { picked = -1; }, { passive: true }));
+      spy();
+    })();
+  </script>
+</body>
+</html>
