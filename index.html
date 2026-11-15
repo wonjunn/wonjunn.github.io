@@ -69,6 +69,7 @@
       --sel: #e4e2da;
       --hover: #f8f8f6;
       --chip-hover: #eae9e5;
+      --photo-line: #e9e8e5;
       --pad: 88px;
       --ph: 264px;
       color-scheme: light;
@@ -85,6 +86,7 @@
         --sel: #42413b;
         --hover: #20201f;
         --chip-hover: #32322f;
+        --photo-line: #434240;
         color-scheme: dark;
       }
     }
@@ -99,6 +101,7 @@
       --sel: #42413b;
       --hover: #20201f;
       --chip-hover: #32322f;
+      --photo-line: #434240;
       color-scheme: dark;
     }
 
@@ -138,8 +141,9 @@
     .main { padding: var(--pad) 0 80px; min-width: 0; }
 
     /* identity panel */
-    /* the whole 3:4 photo, same framing as the live site; --ph is its height */
-    .avatar { width: calc(var(--ph) * .75); height: var(--ph); border-radius: 20px; overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--line); flex: none; }
+    /* the whole 3:4 photo, same framing as the live site; --ph is its height. the corners scale with it (20px at full size),
+       and the outline is a step stronger in dark mode, where the dark jacket would otherwise merge with the page */
+    .avatar { width: calc(var(--ph) * .75); height: var(--ph); border-radius: calc(var(--ph) * .0758); overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--photo-line); flex: none; }
     .avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
     h1 { margin: 24px 0 0; font-size: 26px; line-height: 1.12; font-weight: 650; letter-spacing: -.03em; }
     h1 .ko { margin-left: 10px; font-size: 16.5px; font-weight: 450; letter-spacing: 0; color: var(--text-3); }
