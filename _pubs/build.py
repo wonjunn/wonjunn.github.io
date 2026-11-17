@@ -11,8 +11,9 @@ After editing either file, run (from any folder):
   python3 _pubs/build.py
 
 It rewrites
-  index.html       the lines between the "BEGIN paper list" and "END paper list" comments
-  beta/index.html  the `const PUBS = [...]` line, if that page exists
+  index.html            the lines between the "BEGIN paper list" and "END paper list" comments
+  beta-next/index.html  the same lines, if that page exists (the working copy of the next main page)
+  beta/index.html       the `const PUBS = [...]` line, if that page exists
 
 so the list is plain HTML in the main page and shows without scripts. The folder name
 starts with an underscore, so GitHub Pages does not publish it.
@@ -130,7 +131,7 @@ def write_main(path, block):
     begin = [i for i, line in enumerate(lines) if BEGIN in line]
     end = [i for i, line in enumerate(lines) if END in line]
     if len(begin) != 1 or len(end) != 1 or begin[0] >= end[0]:
-        sys.exit(f'{path.name}: expected one "{BEGIN} ..." comment followed by one "{END}" comment')
+        sys.exit(f'{path.relative_to(ROOT)}: expected one "{BEGIN} ..." comment followed by one "{END}" comment')
     save(path, old, "\n".join(lines[: begin[0] + 1] + block + lines[end[0]:]))
 
 
@@ -164,6 +165,10 @@ def main():
         print(f'no homepage on file for {len(missing)} co-authors: {", ".join(missing)}')
 
     write_main(ROOT / "index.html", block)
+    # the working copy of the next main page has the same two comments and the same markup for a paper
+    nxt = ROOT / "beta-next" / "index.html"
+    if nxt.exists():
+        write_main(nxt, block)
     write_beta(ROOT / "beta" / "index.html", groups)
 
 
