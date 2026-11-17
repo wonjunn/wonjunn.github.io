@@ -62,6 +62,7 @@
     :root {
       --bg: #fdfdfc;
       --surface: #f3f3f0;
+      --pick: #edece8;
       --line: #e9e8e5;
       --line-2: #d6d5d0;
       --link-line: #8f8e87;
@@ -72,7 +73,7 @@
       --hover: #f8f8f6;
       --chip-hover: #eae9e5;
       --photo-line: #e9e8e5;
-      --pad: 88px;
+      --pad: 64px;   /* above the first line on tall windows; 88px on the main page, where sections were 72px apart */
       --ph: 264px;
       color-scheme: light;
     }
@@ -80,6 +81,7 @@
       :root:not([data-theme="light"]) {
         --bg: #1b1b1a;
         --surface: #262624;
+        --pick: #2a2a28;
         --line: #31312e;
         --line-2: #434240;
         --link-line: #6b6a65;
@@ -96,6 +98,7 @@
     :root[data-theme="dark"] {
       --bg: #1b1b1a;
       --surface: #262624;
+      --pick: #2a2a28;
       --line: #31312e;
       --line-2: #434240;
       --link-line: #6b6a65;
@@ -146,10 +149,11 @@
     .plink .icon { width: 13px; height: 13px; }
 
     /* layout */
-    /* the left column is as wide as what is in it needs (the widest line, the email with its copy button, is 210px);
-       it was 280px, which left a band of 154px between the two columns' contents. the page's maximum width shrank by the
-       same 48px, because the columns are pushed to the two edges and the freed width would only widen the gap */
-    .page { display: grid; grid-template-columns: 232px minmax(0, 680px); justify-content: space-between; column-gap: 64px; max-width: 1092px; margin: 0 auto; padding: 0 48px; }
+    /* the left column is as wide as what is in it needs: the widest line, the email with its copy button, is 210px, and
+       10px are left over in case a fallback font draws it wider. it was 280px, which left a band of 154px between the two
+       columns' contents (94px now). the page's maximum width shrank by the same 60px, because the columns are pushed to
+       the two edges and the freed width would only widen the gap */
+    .page { display: grid; grid-template-columns: 220px minmax(0, 680px); justify-content: space-between; column-gap: 64px; max-width: 1080px; margin: 0 auto; padding: 0 48px; }
     .panel { position: sticky; top: 0; height: 100vh; height: 100dvh; padding: var(--pad) 0 56px; display: flex; flex-direction: column; }
     .main { padding: var(--pad) 0 80px; min-width: 0; }
 
@@ -158,9 +162,11 @@
        and the outline is a step stronger in dark mode, where the dark jacket would otherwise merge with the page */
     .avatar { width: calc(var(--ph) * .75); height: var(--ph); border-radius: calc(var(--ph) * .0379); overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--photo-line); flex: none; }
     .avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    h1 { margin: 24px 0 0; font-size: 26px; line-height: 1.12; font-weight: 650; letter-spacing: -.03em; }
+    /* the name is 24px (26px on the main page): the running text went from about 15.5px to 14.5px, and this keeps the
+       name at the same 1.65 times the text that it had before */
+    h1 { margin: 24px 0 0; font-size: 24px; line-height: 1.12; font-weight: 650; letter-spacing: -.03em; }
     /* the Korean name is drawn by the system's Korean font, which the change of typeface does not touch, so it keeps its own size */
-    h1 .ko { margin-left: 10px; font-size: 16.5px; font-size-adjust: none; font-weight: 450; letter-spacing: 0; color: var(--text-3); }
+    h1 .ko { margin-left: 10px; font-size: 15.5px; font-size-adjust: none; font-weight: 450; letter-spacing: 0; color: var(--text-3); }
     /* the role says who this is, like the same words under Work Experience, so it is in the ink color; the links and the menu below stay gray */
     .role { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: var(--text); }
     .role a { color: var(--text); }
@@ -191,7 +197,9 @@
 
     /* sections */
     .sec { scroll-margin-top: var(--pad); }
-    .sec + .sec { margin-top: 44px; }
+    /* 40px between the boxes puts 45px between a section's last line of text and the next heading's text (about two
+       lines of running text). the one-column layout has 36px, which shows as about 41px */
+    .sec + .sec { margin-top: 40px; }
     /* a light rule under each section heading marks where a section starts, so the sections can sit closer than
        when space alone had to separate them */
     .sec-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; min-height: 37px; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line-2); }
@@ -207,12 +215,15 @@
     .note { margin: 12px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--text-2); border-radius: 6px; }
     .note .n { margin-right: 3px; font-size: .76em; line-height: 0; vertical-align: super; font-weight: 500; }
     .note b { font-weight: 600; }
-    /* the sources after the note's sentence are icon links; inside running text they sit on the text's baseline */
-    /* the same gap after the sentence as between the links; as right margins, so a link that wraps starts flush left */
+    /* icon links that follow a sentence inside its paragraph: the sources of the footnote, the blog posts after the
+       introduction to the papers and after a project's description. they sit on the text's baseline, and the gap after
+       the sentence is the same as between the links; as right margins, so a link that wraps starts flush left */
     .note .t { margin-right: 6px; }
     .note .plink { align-items: baseline; margin-right: 6px; }
-    .note .plink:last-child { margin-right: 0; }
-    .note .plink .icon { align-self: center; }
+    .intro .t, .item-d .t { margin-right: 10px; }
+    .intro .plink, .item-d .plink { align-items: baseline; margin-right: 10px; font-size: 13.5px; }
+    :is(.note, .intro, .item-d) .plink:last-child { margin-right: 0; }
+    :is(.note, .intro, .item-d) .plink .icon { align-self: center; }
     .note.flash { animation: flash 1.2s ease-out; }
     @keyframes flash { 0%, 35% { background: var(--surface); box-shadow: 0 0 0 6px var(--surface); } 100% { background: transparent; box-shadow: 0 0 0 6px transparent; } }
 
@@ -235,12 +246,16 @@
     .filter { display: flex; gap: 2px; }
     .filter button { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border: 0; border-radius: 8px; background: none; color: var(--text-3); font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s, color .15s; }
     .filter button:hover { color: var(--text); }
-    .filter button[aria-checked="true"] { background: var(--surface); color: var(--text); }
+    /* the chosen button's background is --pick, about 1.16 to 1 against the page; with --surface (1.09 to 1) the choice
+       showed only in the color of the label */
+    .filter button[aria-checked="true"] { background: var(--pick); color: var(--text); }
     .filter .c { font-size: 11.5px; color: var(--text-3); font-variant-numeric: tabular-nums; }
     .intro { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--text); }
     .intro b { font-weight: 600; color: var(--text); }
-    .blogs { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 12px 0 0; font-size: 13.5px; }
-    .legend { margin: 10px 0 0; font-size: 13px; color: var(--text-3); }
+    /* what the marks after authors' names mean sits beside the section's title, on the line of the filter that uses
+       them (a co-first author counts as first author, equal advising as last author). title and legend share a baseline */
+    .sec-t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; }
+    .legend { margin: 0; font-size: 12.5px; color: var(--text-2); }
     .grp { margin-top: 22px; }
     .grp-h {
       position: sticky; top: 0; z-index: 2;
@@ -253,6 +268,9 @@
     }
     .grp-h .gc { font-size: 12px; font-weight: 400; color: var(--text-3); font-variant-numeric: tabular-nums; }
     .pubs { list-style: none; margin: 0; padding: 0; }
+    /* every paper has 10px of padding under it, which would add to the space after the section; taking it back here
+       works whichever paper is the last one shown by the filter */
+    #list { margin-bottom: -11px; }
     .pub { margin: 0 -12px; padding: 10px 12px; border-radius: 10px; transition: background .15s; }
     /* the row under the pointer gets a faint background; nothing else about it changes, and touch screens skip it */
     @media (hover: hover) {
@@ -309,7 +327,7 @@
       .plink, .links a, .filter button, #copy-email, .mnav a { position: relative; }
       .plink::after, .links a::after, .filter button::after, #copy-email::after, #theme::after, .mnav a::after { content: ""; position: absolute; }
       .plink::after { inset: -7px -5px -12px; }
-      .blogs .plink::after { inset: -2px -8px; }
+      .intro .plink::after { inset: -1px -5px; }
       .note .plink::after { inset: -7px -4px -12px; }
       .links a::after { inset: -4px -3px -4px -8px; }
       #copy-email::after { inset: -3px -8px -6px -3px; }
@@ -332,7 +350,7 @@
       .avatar { display: none; }
       h1 { margin-top: 0; }
     }
-    @media (max-width: 1071px) and (min-width: 1024px) {
+    @media (max-width: 1059px) and (min-width: 1024px) {
       .page { column-gap: 40px; padding: 0 32px; }
     }
     /* one column */
@@ -383,7 +401,7 @@
       .mnav-in { padding-left: 12px; }
       .panel { padding-top: 44px; }
       #theme { top: 12px; }
-      h1 { font-size: 25px; }
+      h1 { font-size: 23px; }
       .news li { grid-template-columns: minmax(0, 1fr); }
       .news time { font-size: 12.5px; line-height: 1.6; }
       .filter { width: 100%; }
@@ -461,6 +479,7 @@
     /* this page only; the map's own styles above are written by add_map.py and must not be edited there.
        the view buttons end where the heading's rule ends, like the publication filter */
     .views { margin-right: 0; }
+    .views button[aria-checked="true"] { background: var(--pick); }
     @media (max-width: 560px) {
       .views { margin: 0; }
     }
@@ -544,26 +563,19 @@
       <section class="sec" id="projects">
         <div class="sec-h"><h2>Projects</h2></div>
         <h3 class="item-t">OCR System Development with ePopSoft</h3>
-        <p class="item-d">Developed a pipeline of computer vision models (text detection and recognition) deployed on Furiosa's Gen 1 Vision NPU.</p>
-        <p class="item-m"><a class="plink" href="https://furiosa.ai/blog/koreas-most-popular-language-instruction-app-uses-warboy-to-translate-text-in-images-2"><svg class="icon"><use href="#i-news"/></svg>Blog</a></p>
+        <p class="item-d"><span class="t">Developed a pipeline of computer vision models (text detection and recognition) deployed on Furiosa's Gen 1 Vision NPU.</span> <a class="plink" href="https://furiosa.ai/blog/koreas-most-popular-language-instruction-app-uses-warboy-to-translate-text-in-images-2"><svg class="icon"><use href="#i-news"/></svg>Blog</a></p>
       </section>
 
       <section class="sec" id="publications">
         <div class="sec-h">
-          <h2>Publications</h2>
+          <div class="sec-t"><h2>Publications</h2><p class="legend">* equal contribution, &dagger; equal advising</p></div>
           <div class="filter" role="radiogroup" aria-label="Filter publications">
             <button type="button" role="radio" aria-checked="true" tabindex="0" data-f="all">All<span class="c"></span></button>
             <button type="button" role="radio" aria-checked="false" tabindex="-1" data-f="first">First author<span class="c"></span></button>
             <button type="button" role="radio" aria-checked="false" tabindex="-1" data-f="last">Last author<span class="c"></span></button>
           </div>
         </div>
-        <p class="intro">My research interests are broad, with first-authored publications spanning Machine Learning (<b>NeurIPS, ICML, ICLR</b>), Computer Vision (<b>ECCV, WACV</b>), and Natural Language Processing (<b>COLM, ACL, EACL</b>).</p>
-        <p class="blogs">
-          <a class="plink" href="https://furiosa.ai/blog/furiosaai-at-icml-2026-advancing-full-stack-software-efficiency"><svg class="icon"><use href="#i-news"/></svg>Blog: ICML 2026</a>
-          <a class="plink" href="https://furiosa.ai/blog/furiosa-presents-papers-about-improving-ai-performance-at-icml-2025-and-acl-2025"><svg class="icon"><use href="#i-news"/></svg>Blog: ICML &amp; ACL 2025</a>
-          <a class="plink" href="https://furiosa.ai/blog/furiosaai-presents-papers-at-eccv-colm-conference-to-improve-ai-image-generation"><svg class="icon"><use href="#i-news"/></svg>Blog: ECCV &amp; COLM 2024</a>
-        </p>
-        <p class="legend">* equal contribution, &dagger; equal advising</p>
+        <p class="intro"><span class="t">My research interests are broad, with first-authored publications spanning Machine Learning (<b>NeurIPS, ICML, ICLR</b>), Computer Vision (<b>ECCV, WACV</b>), and Natural Language Processing (<b>COLM, ACL, EACL</b>).</span> <a class="plink" href="https://furiosa.ai/blog/furiosaai-at-icml-2026-advancing-full-stack-software-efficiency"><svg class="icon"><use href="#i-news"/></svg>Blog: ICML 2026</a> <a class="plink" href="https://furiosa.ai/blog/furiosa-presents-papers-about-improving-ai-performance-at-icml-2025-and-acl-2025"><svg class="icon"><use href="#i-news"/></svg>Blog: ICML &amp; ACL 2025</a> <a class="plink" href="https://furiosa.ai/blog/furiosaai-presents-papers-at-eccv-colm-conference-to-improve-ai-image-generation"><svg class="icon"><use href="#i-news"/></svg>Blog: ECCV &amp; COLM 2024</a></p>
         <div id="list">
           <!-- BEGIN paper list. Written by _pubs/build.py from _pubs/pubs.json and _pubs/authors.json: change those files and run the script; edits made here are overwritten. -->
           <section class="grp" aria-label="Preprints">
