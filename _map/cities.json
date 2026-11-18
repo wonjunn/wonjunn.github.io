@@ -31,5 +31,8 @@
   {"name": "Tokyo", "cc": "jp", "lat": 35.68, "lon": 139.69, "photo": "photos/tokyo.jpg", "photo_w": 800, "photo_h": 600},
   {"name": "Fukuoka", "cc": "jp", "lat": 33.59, "lon": 130.4, "photo": "photos/fukuoka.jpg", "photo_w": 800, "photo_h": 800},
   {"name": "Hiroshima", "cc": "jp", "lat": 34.39, "lon": 132.46, "photo": "photos/hiroshima.jpg", "photo_w": 600, "photo_h": 800},
-  {"name": "St. Louis", "cc": "us", "lat": 38.63, "lon": -90.2, "photo": "photos/st-louis.jpg", "photo_w": 600, "photo_h": 800}
+  {"name": "St. Louis", "cc": "us", "lat": 38.63, "lon": -90.2, "photo": "photos/st-louis.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Miami", "cc": "us", "lat": 25.76, "lon": -80.19, "photo": "photos/miami.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Tampa", "cc": "us", "lat": 27.95, "lon": -82.46, "photo": "photos/tampa.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Las Vegas", "cc": "us", "lat": 36.17, "lon": -115.14, "photo": "photos/las-vegas.jpg", "photo_w": 800, "photo_h": 600}
 ]
