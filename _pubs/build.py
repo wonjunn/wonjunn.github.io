@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the paper list into the site's pages.
+"""Write the paper list into the site's main page.
 
 The papers are kept in two files next to this script:
 
@@ -10,12 +10,8 @@ After editing either file, run (from any folder):
 
   python3 _pubs/build.py
 
-It rewrites
-  index.html            the lines between the "BEGIN paper list" and "END paper list" comments
-  beta-next/index.html  the same lines, if that page exists (the working copy of the next main page)
-  beta/index.html       the `const PUBS = [...]` line, if that page exists
-
-so the list is plain HTML in the main page and shows without scripts. The folder name
+It rewrites the lines of index.html between the "BEGIN paper list" and "END paper list"
+comments, so the list is plain HTML in the main page and shows without scripts. The folder name
 starts with an underscore, so GitHub Pages does not publish it.
 
 How a paper is written in pubs.json:
@@ -135,17 +131,6 @@ def write_main(path, block):
     save(path, old, "\n".join(lines[: begin[0] + 1] + block + lines[end[0]:]))
 
 
-def write_beta(path, groups):
-    if not path.exists():
-        return
-    old = path.read_bytes().decode("utf-8")
-    line = re.compile(r"^([ \t]*)const PUBS = .*;$", re.M)
-    if len(line.findall(old)) != 1:
-        sys.exit(f"{path.relative_to(ROOT)}: expected exactly one `const PUBS = [...];` line")
-    data = json.dumps(groups, ensure_ascii=False)
-    save(path, old, line.sub(lambda m: f"{m.group(1)}const PUBS = {data};", old))
-
-
 def main():
     groups = json.loads((HERE / "pubs.json").read_text(encoding="utf-8"))
     links = json.loads((HERE / "authors.json").read_text(encoding="utf-8"))
@@ -165,11 +150,6 @@ def main():
         print(f'no homepage on file for {len(missing)} co-authors: {", ".join(missing)}')
 
     write_main(ROOT / "index.html", block)
-    # the working copy of the next main page has the same two comments and the same markup for a paper
-    nxt = ROOT / "beta-next" / "index.html"
-    if nxt.exists():
-        write_main(nxt, block)
-    write_beta(ROOT / "beta" / "index.html", groups)
 
 
 if __name__ == "__main__":

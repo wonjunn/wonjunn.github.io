@@ -1,0 +1,22 @@
+[
+  {"name": "Philadelphia", "cc": "us", "lat": 39.95, "lon": -75.17, "note": "COLM 2024", "photo": "photos/philadelphia.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Milwaukee", "cc": "us", "lat": 43.04, "lon": -87.91, "photo": "photos/milwaukee.jpg", "photo_w": 800, "photo_h": 800},
+  {"name": "Vancouver", "cc": "ca", "lat": 49.28, "lon": -123.12, "note": "ICML 2025", "photo": "photos/vancouver.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Guam", "cc": "gu", "lat": 13.47, "lon": 144.78, "photo": "photos/guam.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Hawaii", "cc": "us", "lat": 19.6, "lon": -155.5, "photo": "photos/hawaii.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Orlando", "cc": "us", "lat": 28.54, "lon": -81.38, "photo": "photos/orlando.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "New York", "cc": "us", "lat": 40.71, "lon": -74.01, "photo": "photos/new-york.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Seattle", "cc": "us", "lat": 47.61, "lon": -122.33, "photo": "photos/seattle.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Rio de Janeiro", "cc": "br", "lat": -22.91, "lon": -43.17, "note": "ICLR 2026", "photo": "photos/rio-de-janeiro.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Vienna", "cc": "at", "lat": 48.21, "lon": 16.37, "note": "ACL 2025", "photo": "photos/vienna.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Milan", "cc": "it", "lat": 45.46, "lon": 9.19, "note": "ECCV 2024", "photo": "photos/milan.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Seoul", "cc": "kr", "lat": 37.57, "lon": 126.98, "note": "ICML 2026", "photo": "photos/seoul.jpg", "photo_w": 800, "photo_h": 533},
+  {"name": "New Orleans", "cc": "us", "lat": 29.95, "lon": -90.07, "note": "CVPR 2022", "photo": "photos/new-orleans.jpg", "photo_w": 800, "photo_h": 800},
+  {"name": "Los Angeles", "cc": "us", "lat": 34.05, "lon": -118.24, "photo": "photos/los-angeles.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Paris", "cc": "fr", "lat": 48.86, "lon": 2.35, "photo": "photos/paris.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Washington, D.C.", "cc": "us", "lat": 38.91, "lon": -77.04, "photo": "photos/washington-dc.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Madison", "cc": "us", "lat": 43.07, "lon": -89.4, "photo": "photos/madison.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Atlanta", "cc": "us", "lat": 33.75, "lon": -84.39, "photo": "photos/atlanta.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Detroit", "cc": "us", "lat": 42.33, "lon": -83.05, "photo": "photos/detroit.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Dubai", "cc": "ae", "lat": 25.2, "lon": 55.27, "photo": "photos/dubai.jpg", "photo_w": 600, "photo_h": 800}
+]
