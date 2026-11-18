@@ -9,7 +9,9 @@ Usage (from the repo root; -I keeps Python from loading code next to the data):
 What it reads, all in this folder:
   cities.json   one entry per place: {"name", "cc", "lat", "lon", "note"?, "photo", "photo_w", "photo_h"} in any order;
                 the page lists them by name, A to Z. "note" is a few words shown after the name on the photo card
-                ("ICML 2026"). "cc" is the two-letter code of the country whose flag follows the name on the card.
+                ("ICML 2026"). "cc" names the flag that follows the name on the card: a country's two-letter code ("kr"), or a
+                nation of the United Kingdom as the flag set names it ("gb-eng", "gb-sct", "gb-wls"; the user wants
+                those shown as countries of their own). The file <cc>.svg has to be in data/flag-icons-7.6.0/.
                 "photo" is a path from the page's folder ("photos/seoul.jpg"); make the file with add_photo.py,
                 which also prints its width and height. Use the city's general coordinates, not the photo's own.
   data/         Natural Earth land polygons (public domain): 1:110m for the light outline that sits inside the page,
@@ -140,7 +142,7 @@ def flag_for(city):
     together with the flag set's license, which has to travel with the files."""
     cc = city.get("cc", "")
     source = FLAG_SOURCE / f"{cc}.svg"
-    if not re.fullmatch(r"[a-z]{2}", cc) or not source.is_file():
+    if not re.fullmatch(r"[a-z]{2}(-[a-z]{3})?", cc) or not source.is_file():
         return ""
     target = PAGE.parent / "flags" / source.name
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -168,8 +170,8 @@ def build_section(cities):
             + (f' data-flag="{esc(flag)}"' if flag else "") + "></i>"
         )
         # a name never breaks inside, and the dot between names stays at the end of a line, not the start of the next
-        sep = "&nbsp;&middot;" if i < len(cities) - 1 else ""
-        names.append(f'<span class="pi"><button class="pname" type="button">{esc(c["name"])}</button>{sep}</span>')
+        # every name carries the dot that follows it; the last name shown hides its dot (see .sep in the styles)
+        names.append(f'<span class="pi"><button class="pname" type="button">{esc(c["name"])}</button><span class="sep">&nbsp;&middot;</span></span>')
     views = region_views(placed)
     buttons = [f'            <button type="button" role="radio" aria-checked="true" tabindex="0" data-view="0,0,{num(W)}">World</button>']
     buttons += [
@@ -229,6 +231,7 @@ STYLES = '''
        world map, such as Seattle and Vancouver, show as two dots */
     .pin { position: absolute; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: var(--text); box-shadow: 0 0 0 1.5px var(--bg); pointer-events: none; transition: left .6s cubic-bezier(.3, 0, .15, 1), top .6s cubic-bezier(.3, 0, .15, 1), transform .15s; }
     .pin.on { z-index: 2; transform: scale(1.9); }
+    .pin.out { visibility: hidden; }
     .pcard { position: absolute; z-index: 3; width: 196px; margin: 0; padding: 6px 6px 8px; border-radius: 14px; background: var(--bg); box-shadow: 0 0 0 1px var(--line-2), 0 10px 30px rgba(0, 0, 0, .1); pointer-events: none; opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .15s, transform .15s, visibility .15s; }
     .pcard.up { transform: translateY(4px); }
     .pcard.show { opacity: 1; visibility: visible; transform: none; }
@@ -245,10 +248,14 @@ STYLES = '''
        the flag is fetched the first time a card needs it and fades in when it has arrived */
     .pc-name .flag { display: inline-block; width: 1.04em; height: .78em; margin-left: .4em; vertical-align: -.03em; border-radius: 2px; box-shadow: 0 0 0 1px var(--line-2); opacity: 0; transition: opacity .15s; }
     .pc-name .flag.ready { opacity: 1; }
-    .places { margin: 16px 0 0; font-size: 13.5px; line-height: 1.8; color: var(--text-3); }
+    /* the names are 13px, the size of the view buttons above the map (13.5px until 2026-11-18, when the user asked for them a step smaller) */
+    .places { margin: 16px 0 0; font-size: 13px; line-height: 1.8; color: var(--text-3); }
     .places .pi { white-space: nowrap; }
+    /* in a region's view only that view's names are listed, like the publication filter; the script keeps the list as
+       tall as it is with every name, so choosing a view does not move the map (this is the last section of the page) */
+    .places .pi.gone { display: none; }
+    .places .pi:last-child .sep, .places .pi.last .sep { display: none; }
     .pname { all: unset; cursor: pointer; color: var(--text-2); border-radius: 4px; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s; -webkit-tap-highlight-color: transparent; }
-    .pname.off { color: var(--text-3); }
     .pname.on { color: var(--text); text-decoration-color: currentColor; }
     .pname:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
     @media (pointer: coarse) {
@@ -294,7 +301,12 @@ SCRIPT = r'''      // places. a dot on the map and its name in the list are one 
           const [x, y, w] = views[k];
           return [(at[i][0] - x) / w * 100, (at[i][1] - y) / (w * H / W) * 100];
         };
-        const inView = (i, k = view) => { const [l, t] = spot(i, k); return l >= 0 && l <= 100 && t >= 0 && t <= 100; };
+        // in a region's view a dot right at the frame's edge counts as outside and is hidden, or the frame would cut it in
+        // half (Tokyo lies 2px inside the top of the Pacific view). the margins are about 13px on a 680px map and 6px on a phone
+        const inView = (i, k = view) => {
+          const [l, t] = spot(i, k), mx = k ? 2 : 0, my = k ? 4 : 0;
+          return l >= mx && l <= 100 - mx && t >= my && t <= 100 - my;
+        };
 
         function hide() {
           if (active < 0) return;
@@ -367,10 +379,35 @@ SCRIPT = r'''      // places. a dot on the map and its name in the list are one 
           land.style.transform = `translate(${-x / W * s * 100}%, ${-y / H * s * 100}%) scale(${s})`;
           pins.forEach((p, i) => { const [l, t] = spot(i); p.style.left = l + "%"; p.style.top = t + "%"; });
           tabs.forEach((b, j) => { b.setAttribute("aria-checked", j === k); b.tabIndex = j === k ? 0 : -1; });
-          names.forEach((n, i) => n.classList.toggle("off", !inView(i)));
+          pins.forEach((p, i) => p.classList.toggle("out", !inView(i)));
+          listed();
           box.style.cursor = "";   // the next pointer move sets it again for the new view
           if (active >= 0) { if (inView(active)) place(active); else { pinned = false; hide(); } }
         }
+        // the names under the map: all of them in the world view, only the view's own in a region's view.
+        // the last name shown drops the dot after it
+        const list = $(".places"), items = names.map(n => n.parentNode);
+        function listed() {
+          let last = null;
+          items.forEach((el, i) => {
+            const gone = view > 0 && !inView(i);
+            el.classList.toggle("gone", gone);
+            el.classList.remove("last");
+            if (!gone) last = el;
+          });
+          if (last) last.classList.add("last");
+        }
+        // the list keeps the height it has with every name shown, measured again when the width or the font changes
+        function reserve() {
+          list.style.minHeight = "";
+          items.forEach(el => el.classList.remove("gone", "last"));
+          list.style.minHeight = list.offsetHeight + "px";
+          listed();
+        }
+        reserve();
+        addEventListener("resize", reserve);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(reserve);
+
         // a click keeps a city's card open; a city outside the current view brings the whole world back first
         const toggle = i => {
           if (pinned && active === i) { pinned = false; hide(); return; }

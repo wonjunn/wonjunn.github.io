@@ -18,5 +18,18 @@
   {"name": "Madison", "cc": "us", "lat": 43.07, "lon": -89.4, "photo": "photos/madison.jpg", "photo_w": 600, "photo_h": 800},
   {"name": "Atlanta", "cc": "us", "lat": 33.75, "lon": -84.39, "photo": "photos/atlanta.jpg", "photo_w": 800, "photo_h": 600},
   {"name": "Detroit", "cc": "us", "lat": 42.33, "lon": -83.05, "photo": "photos/detroit.jpg", "photo_w": 600, "photo_h": 800},
-  {"name": "Dubai", "cc": "ae", "lat": 25.2, "lon": 55.27, "photo": "photos/dubai.jpg", "photo_w": 600, "photo_h": 800}
+  {"name": "Dubai", "cc": "ae", "lat": 25.2, "lon": 55.27, "photo": "photos/dubai.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Manchester", "cc": "gb-eng", "lat": 53.48, "lon": -2.24, "photo": "photos/manchester.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Liverpool", "cc": "gb-eng", "lat": 53.41, "lon": -2.98, "photo": "photos/liverpool.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Cardiff", "cc": "gb-wls", "lat": 51.48, "lon": -3.18, "photo": "photos/cardiff.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "London", "cc": "gb-eng", "lat": 51.51, "lon": -0.13, "photo": "photos/london.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Edinburgh", "cc": "gb-sct", "lat": 55.95, "lon": -3.19, "photo": "photos/edinburgh.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Barcelona", "cc": "es", "lat": 41.39, "lon": 2.17, "photo": "photos/barcelona.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Madrid", "cc": "es", "lat": 40.42, "lon": -3.7, "photo": "photos/madrid.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Seville", "cc": "es", "lat": 37.39, "lon": -5.98, "photo": "photos/seville.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Kota Kinabalu", "cc": "my", "lat": 5.98, "lon": 116.07, "photo": "photos/kota-kinabalu.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Tokyo", "cc": "jp", "lat": 35.68, "lon": 139.69, "photo": "photos/tokyo.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Fukuoka", "cc": "jp", "lat": 33.59, "lon": 130.4, "photo": "photos/fukuoka.jpg", "photo_w": 800, "photo_h": 800},
+  {"name": "Hiroshima", "cc": "jp", "lat": 34.39, "lon": 132.46, "photo": "photos/hiroshima.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "St. Louis", "cc": "us", "lat": 38.63, "lon": -90.2, "photo": "photos/st-louis.jpg", "photo_w": 600, "photo_h": 800}
 ]
