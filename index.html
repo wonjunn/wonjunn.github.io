@@ -203,7 +203,7 @@
     .sec { scroll-margin-top: var(--pad); }
     /* 40px between the boxes puts 45px between a section's last line of text and the next heading's text (about two
        lines of running text). the one-column layout has 36px, which shows as about 41px */
-    .sec + .sec { margin-top: 40px; }
+    .sec + .sec { margin-top: 36px; }   /* about 41px from a section's last line to the next heading (45px until 2026-11-19); the year groups went down by the same 4px, so a section break stays wider than a year break */
     /* a light rule under each section heading marks where a section starts, so the sections can sit closer than
        when space alone had to separate them */
     .sec-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; min-height: 37px; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line-2); }
@@ -231,7 +231,7 @@
     .note.flash { animation: flash 1.2s ease-out; }
     @keyframes flash { 0%, 35% { background: var(--surface); box-shadow: 0 0 0 6px var(--surface); } 100% { background: transparent; box-shadow: 0 0 0 6px transparent; } }
 
-    .news { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .news { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }   /* 6px between one-line items (8px until 2026-11-19); where the date sits above the sentence it stays 8px */
     /* a date in the mono face is 64px wide; with the 16px column gap the sentence starts 24px after it (38px in the
        design before this one, which read as two separate columns). date and text sit on one baseline whatever their sizes */
     .news li { display: grid; align-items: baseline; grid-template-columns: 72px minmax(0, 1fr); column-gap: 16px; font-size: 14.5px; line-height: 1.6; color: var(--text); }
@@ -242,7 +242,9 @@
     .news time { font-size: 13px; line-height: 1.78; color: var(--text-3); font-variant-numeric: tabular-nums; }
     .news b { font-weight: 600; color: var(--text); white-space: nowrap; }
 
-    .item-t { margin: 0; font-size: 15px; line-height: 1.5; font-weight: 600; letter-spacing: -.01em; }
+    /* a title (paper, project, organization) is the size of the running text and told apart by weight alone, as in a
+       bibliography (15px until 2026-11-19). the line heights keep each title's line as tall as it was */
+    .item-t { margin: 0; font-size: 14.5px; line-height: 1.55; font-weight: 600; letter-spacing: -.01em; }
     .item-d { margin: 5px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--text); }
     .item-m { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 8px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--text-3); }
 
@@ -260,7 +262,7 @@
        them (a co-first author counts as first author, equal advising as last author). title and legend share a baseline */
     .sec-t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; }
     .legend { margin: 0; font-size: 12.5px; color: var(--text-2); }
-    .grp { margin-top: 22px; }
+    .grp { margin-top: 18px; }
     .grp-h {
       position: sticky; top: 0; z-index: 2;
       display: flex; align-items: baseline; justify-content: space-between;
@@ -272,18 +274,20 @@
     }
     .grp-h .gc { font-size: 12px; font-weight: 400; color: var(--text-3); font-variant-numeric: tabular-nums; }
     .pubs { list-style: none; margin: 0; padding: 0; }
-    /* every paper has 10px of padding under it, which would add to the space after the section; taking it back here
+    /* every paper has 8px of padding under it, which would add to the space after the section; taking it back here
        works whichever paper is the last one shown by the filter */
-    #list { margin-bottom: -11px; }
-    .pub { margin: 0 -12px; padding: 10px 12px; border-radius: 10px; transition: background .15s; }
+    #list { margin-bottom: -9px; }
+    .pub { margin: 0 -12px; padding: 8px 12px; border-radius: 10px; transition: background .15s; }   /* 8px above and below (10px until 2026-11-19); #list takes the last paper's padding back */
     /* the row under the pointer gets a faint background; nothing else about it changes, and touch screens skip it */
     @media (hover: hover) {
       .pub:hover { background: var(--hover); }
       .pub:hover .venue { background: var(--chip-hover); }
     }
-    .p-title { font-size: 15px; line-height: 1.5; font-weight: 600; letter-spacing: -.01em; color: var(--text); text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color .15s; }
+    .p-title { font-size: 14.5px; line-height: 1.55; font-weight: 600; letter-spacing: -.01em; color: var(--text); text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: text-decoration-color .15s; }
     .p-title:hover { text-decoration-color: var(--text-3); }
-    .p-authors { margin: 5px 0 0; font-size: 14px; line-height: 1.55; color: var(--text-2); }
+    /* authors are 13.5px, one pixel under the title as before the titles went to 14.5px, and the size of the links on the
+       row below (14px until 2026-11-19). the line height keeps an authors line as tall as it was */
+    .p-authors { margin: 3px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--text-2); }   /* 3px: title to authors is then as far as authors to the row below (5px until 2026-11-19) */
     .p-authors b { font-weight: 600; color: var(--text); }
     /* linked co-author names look like the other names until the pointer is on them */
     .p-authors a { text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s; }
@@ -297,7 +301,7 @@
     /* experience, education */
     .cv { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
     .cv li { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 24px; }
-    .cv .org { font-size: 15px; line-height: 1.55; font-weight: 600; letter-spacing: -.01em; }
+    .cv .org { font-size: 14.5px; line-height: 1.6; font-weight: 600; letter-spacing: -.01em; }
     /* an organization's name is a link, but it is a title like a paper's: its underline shows only under the pointer.
        links inside sentences keep their underline */
     .cv .org .u { text-decoration-color: transparent; }
@@ -399,6 +403,7 @@
       #theme { position: absolute; top: 20px; right: -6px; }
       .main { padding: 44px 0 56px; }
       .sec + .sec { margin-top: 36px; }
+      .grp { margin-top: 22px; }   /* one column: sections and year groups as they were */
       .foot { margin-top: 52px; }
     }
     @media (max-width: 560px) {
@@ -408,6 +413,7 @@
       .panel { padding-top: 44px; }
       #theme { top: 12px; }
       h1 { font-size: 23px; }
+      .news { gap: 8px; }
       .news li { grid-template-columns: minmax(0, 1fr); }
       .news time { font-size: 12.5px; line-height: 1.6; }
       .filter { width: 100%; }
