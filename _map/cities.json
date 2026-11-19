@@ -34,5 +34,16 @@
   {"name": "St. Louis", "cc": "us", "lat": 38.63, "lon": -90.2, "photo": "photos/st-louis.jpg", "photo_w": 600, "photo_h": 800},
   {"name": "Miami", "cc": "us", "lat": 25.76, "lon": -80.19, "photo": "photos/miami.jpg", "photo_w": 800, "photo_h": 600},
   {"name": "Tampa", "cc": "us", "lat": 27.95, "lon": -82.46, "photo": "photos/tampa.jpg", "photo_w": 600, "photo_h": 800},
-  {"name": "Las Vegas", "cc": "us", "lat": 36.17, "lon": -115.14, "photo": "photos/las-vegas.jpg", "photo_w": 800, "photo_h": 600}
+  {"name": "Las Vegas", "cc": "us", "lat": 36.17, "lon": -115.14, "photo": "photos/las-vegas.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Chicago", "cc": "us", "lat": 41.88, "lon": -87.63, "photo": "photos/chicago.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "San Francisco", "cc": "us", "lat": 37.77, "lon": -122.42, "photo": "photos/san-francisco.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Rome", "cc": "it", "lat": 41.9, "lon": 12.5, "photo": "photos/rome.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Florence", "cc": "it", "lat": 43.77, "lon": 11.26, "photo": "photos/florence.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Venice", "cc": "it", "lat": 45.44, "lon": 12.32, "photo": "photos/venice.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Lyon", "cc": "fr", "lat": 45.76, "lon": 4.84, "photo": "photos/lyon.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Monaco", "cc": "mc", "lat": 43.74, "lon": 7.42, "photo": "photos/monaco.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Strasbourg", "cc": "fr", "lat": 48.58, "lon": 7.75, "photo": "photos/strasbourg.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Budapest", "cc": "hu", "lat": 47.5, "lon": 19.04, "photo": "photos/budapest.jpg", "photo_w": 800, "photo_h": 600},
+  {"name": "Prague", "cc": "cz", "lat": 50.08, "lon": 14.44, "photo": "photos/prague.jpg", "photo_w": 600, "photo_h": 800},
+  {"name": "Granada", "cc": "es", "lat": 37.18, "lon": -3.6, "photo": "photos/granada.jpg", "photo_w": 800, "photo_h": 600}
 ]
